@@ -107,7 +107,7 @@
                 "output": "assets"
               }
             ],
-            "styles": ["apps/web/src/styles.scss"],
+            "styles": ["libs/root/styles/src/index.scss"],
             "scripts": []
           },
           "configurations": {
