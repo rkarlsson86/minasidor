@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "/dist/apps/api/main.js",
+      "use": "@now/node"
+    },
+    {
+      "src": "/dist/apps/web/*",
+      "use": "@now/static"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/dist/apps/api/main.js"
+    },
+    {
+      "source": "/assets/(.*)",
+      "destination": "/dist/apps/web/assets/$1"
+    },
+    {
+      "source": "/(.*).(js|css|ico|webmanifest)",
+      "destination": "/dist/apps/web/$1.$2"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/dist/apps/web/index.html"
+    }
+  ]
+}
