@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config';
-import { appConfiguration, authConfiguration, validationSchema } from '@provefa/api/configurations';
+import { validationSchema, appConfiguration } from '@xact-checkout/api/configuration';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       ignoreEnvFile: true,
-      load: [appConfiguration, authConfiguration],
+      load: [appConfiguration],
       validationSchema,
     }),
   ],
