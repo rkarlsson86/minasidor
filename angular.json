@@ -72,6 +72,13 @@
       "architect": {
       }
     },
+    "root-styles": {
+      "projectType": "library",
+      "root": "libs/root/styles",
+      "sourceRoot": "libs/root/styles/src",
+      "architect": {
+      }
+    },
     "web": {
       "projectType": "application",
       "root": "apps/web",

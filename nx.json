@@ -41,6 +41,7 @@
       "tags": [],
       "implicitDependencies": ["web"]
     },
-    "root-assets": { "tags": ["project:crm","scope:root", "type:assets"] }
+    "root-assets": { "tags": ["project:crm","scope:root", "type:assets"] },
+    "root-styles": { "tags": ["project:crm", "scope:root", "type:styles"] }
   }
 }
