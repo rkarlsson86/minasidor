@@ -31,6 +31,12 @@
     "api": {
       "tags": []
     },
+    "api-config": {
+      "tags": []
+    },
+    "api-configuration": {
+      "tags": []
+    },
     "api-interfaces": {
       "tags": []
     },

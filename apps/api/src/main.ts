@@ -6,9 +6,11 @@ import compression from 'fastify-compress'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 import { AppModule } from './app/app.module'
+import { AppConfig, appConfiguration } from '@xact-checkout/api/configuration'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter())
+  const appConfig = app.get<AppConfig>(appConfiguration.KEY)
   await app.register(compression, { encodings: ['gzip', 'deflate'] })
   await app.register(helmet.fastifyHelmet, {
     contentSecurityPolicy: {
@@ -32,23 +34,23 @@ async function bootstrap() {
     .setTitle('Xact Checkout API')
     .setDescription('API documentation for Xact Checkout')
     .setVersion('1.0.0')
-    .addServer(`${process.env.domain}`, 'Development API')
+    .addServer(`${appConfig.domain}`, 'Development API')
     .addBearerAuth({
       name: 'Authorization',
       in: 'header',
-      type: 'apiKey'
+      type: 'apiKey',
     })
-    .build();
-  const swaggerDoc = SwaggerModule.createDocument(app, swaggerDocOptions);
+    .build()
+  const swaggerDoc = SwaggerModule.createDocument(app, swaggerDocOptions)
   SwaggerModule.setup('api/docs', app, swaggerDoc, {
     swaggerOptions: {
       docExpansion: 'none',
       filter: true,
-      showRequestDuration: true
-    }
-  });
-  Logger.log(`Swagger Docs enabled: ${process.env.domain}/${globalPrefix}/docs`, 'NestApplication')
-  const port = process.env.PORT || 3333
+      showRequestDuration: true,
+    },
+  })
+  Logger.log(`Swagger Docs enabled: ${appConfig.domain}/${globalPrefix}/docs`, 'NestApplication')
+  const port = appConfig.port || 3333
   await app.listen(port, () => {
     Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix)
   })

@@ -16,6 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@xact-checkout/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@xact-checkout/api/config": ["libs/api/config/src/index.ts"],
+      "@xact-checkout/api/configuration": ["libs/api/configuration/src/index.ts"],
       "@xact-checkout/root/environments": ["libs/root/environments/src/index.ts"]
     }
   },
