@@ -64,6 +64,14 @@
         }
       }
     },
+    "root-assets": {
+      "projectType": "library",
+      "root": "libs/root/assets",
+      "sourceRoot": "libs/root/assets/src",
+      "prefix": "xact-checkout",
+      "architect": {
+      }
+    },
     "web": {
       "projectType": "application",
       "root": "apps/web",

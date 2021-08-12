@@ -40,6 +40,7 @@
     "web-e2e": {
       "tags": [],
       "implicitDependencies": ["web"]
-    }
+    },
+    "root-assets": { "tags": ["project:crm","scope:root", "type:assets"] }
   }
 }
