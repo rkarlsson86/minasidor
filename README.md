@@ -5,9 +5,13 @@ This project was generated using [Nx](https://nx.dev).
 With Xact Checkout, sell your NFT and digital collectibles made on Hedera Token Service by generating beautiful checkout
 pages integrated with Xact Wallet.
 
-## One Click Deployment on Vercel
+## Deployment on Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FXact-Team%2Fxact-checkout&project-name=nft-checkout&repository-name=nft-checkout)
+install Vercel : `npm i -g vercel`
+
+Then inside this repository run `npm run build` 
+
+Finally to deploy to Vercel run: `vercel`
 
 ## Development server Front End Application (AngularJS)
 
