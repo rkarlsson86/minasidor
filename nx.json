@@ -37,9 +37,6 @@
     "api-configuration": {
       "tags": []
     },
-    "api-interfaces": {
-      "tags": []
-    },
     "root-assets": {
       "tags": ["project:crm", "scope:root", "type:assets"]
     },
