@@ -9,8 +9,11 @@ import { AppModule } from './app/app.module'
 import { AppConfig, appConfiguration } from '@xact-checkout/api/configuration'
 
 async function bootstrap() {
+
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter())
+
   const appConfig = app.get<AppConfig>(appConfiguration.KEY)
+
   await app.register(compression, { encodings: ['gzip', 'deflate'] })
   await app.register(helmet.fastifyHelmet, {
     contentSecurityPolicy: {
@@ -29,19 +32,18 @@ async function bootstrap() {
   })
 
   const globalPrefix = 'api'
+
   app.setGlobalPrefix(globalPrefix)
+
   const swaggerDocOptions = new DocumentBuilder()
     .setTitle('Xact Checkout API')
     .setDescription('API documentation for Xact Checkout')
     .setVersion('1.0.0')
     .addServer(`${appConfig.domain}`, 'Development API')
-    .addBearerAuth({
-      name: 'Authorization',
-      in: 'header',
-      type: 'apiKey',
-    })
     .build()
+
   const swaggerDoc = SwaggerModule.createDocument(app, swaggerDocOptions)
+
   SwaggerModule.setup('api/docs', app, swaggerDoc, {
     swaggerOptions: {
       docExpansion: 'none',
@@ -49,8 +51,11 @@ async function bootstrap() {
       showRequestDuration: true,
     },
   })
+
   Logger.log(`Swagger Docs enabled: ${appConfig.domain}/${globalPrefix}/docs`, 'NestApplication')
+
   const port = appConfig.port || 3333
+
   await app.listen(port, () => {
     Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix)
   })
