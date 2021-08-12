@@ -64,6 +64,41 @@
         }
       }
     },
+    "root-assets": {
+      "projectType": "library",
+      "root": "libs/root/assets",
+      "sourceRoot": "libs/root/assets/src",
+      "prefix": "xact-checkout",
+      "architect": {}
+    },
+    "root-environments": {
+      "projectType": "library",
+      "root": "libs/root/environments",
+      "sourceRoot": "libs/root/environments/src",
+      "prefix": "xact-checkout",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/root/environments"],
+          "options": {
+            "jestConfig": "libs/root/environments/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/root/environments/src/**/*.ts", "libs/root/environments/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "root-styles": {
+      "projectType": "library",
+      "root": "libs/root/styles",
+      "sourceRoot": "libs/root/styles/src",
+      "architect": {}
+    },
     "web": {
       "projectType": "application",
       "root": "apps/web",
@@ -80,8 +115,19 @@
             "polyfills": "apps/web/src/polyfills.ts",
             "tsConfig": "apps/web/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["apps/web/src/favicon.ico", "apps/web/src/assets"],
-            "styles": ["apps/web/src/styles.scss"],
+            "assets": [
+              {
+                "glob": "favicon.ico",
+                "input": "libs/root/assets/src",
+                "output": "./"
+              },
+              {
+                "glob": "**/*",
+                "input": "libs/root/assets/src/assets",
+                "output": "assets"
+              }
+            ],
+            "styles": ["libs/root/styles/src/index.scss"],
             "scripts": []
           },
           "configurations": {
@@ -100,8 +146,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "apps/web/src/environments/environment.ts",
-                  "with": "apps/web/src/environments/environment.prod.ts"
+                  "replace": "libs/root/environments/src/lib/environment.ts",
+                  "with": "libs/root/environments/src/lib/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"

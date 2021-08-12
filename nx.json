@@ -34,6 +34,15 @@
     "api-interfaces": {
       "tags": []
     },
+    "root-assets": {
+      "tags": ["project:crm", "scope:root", "type:assets"]
+    },
+    "root-environments": {
+      "tags": []
+    },
+    "root-styles": {
+      "tags": ["project:crm", "scope:root", "type:styles"]
+    },
     "web": {
       "tags": []
     },
