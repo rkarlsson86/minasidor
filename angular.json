@@ -146,8 +146,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "apps/web/src/environments/environment.ts",
-                  "with": "apps/web/src/environments/environment.prod.ts"
+                  "replace": "libs/root/environments/src/lib/environment.ts",
+                  "with": "libs/root/environments/src/lib/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
