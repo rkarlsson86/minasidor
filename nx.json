@@ -34,14 +34,21 @@
     "api-interfaces": {
       "tags": []
     },
+    "root-assets": {
+      "tags": ["project:crm", "scope:root", "type:assets"]
+    },
+    "root-environments": {
+      "tags": []
+    },
+    "root-styles": {
+      "tags": ["project:crm", "scope:root", "type:styles"]
+    },
     "web": {
       "tags": []
     },
     "web-e2e": {
       "tags": [],
       "implicitDependencies": ["web"]
-    },
-    "root-assets": { "tags": ["project:crm","scope:root", "type:assets"] },
-    "root-styles": { "tags": ["project:crm", "scope:root", "type:styles"] }
+    }
   }
 }

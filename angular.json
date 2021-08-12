@@ -69,15 +69,35 @@
       "root": "libs/root/assets",
       "sourceRoot": "libs/root/assets/src",
       "prefix": "xact-checkout",
+      "architect": {}
+    },
+    "root-environments": {
+      "projectType": "library",
+      "root": "libs/root/environments",
+      "sourceRoot": "libs/root/environments/src",
+      "prefix": "xact-checkout",
       "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/root/environments"],
+          "options": {
+            "jestConfig": "libs/root/environments/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/root/environments/src/**/*.ts", "libs/root/environments/src/**/*.html"]
+          }
+        }
       }
     },
     "root-styles": {
       "projectType": "library",
       "root": "libs/root/styles",
       "sourceRoot": "libs/root/styles/src",
-      "architect": {
-      }
+      "architect": {}
     },
     "web": {
       "projectType": "application",

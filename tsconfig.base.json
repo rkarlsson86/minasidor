@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@xact-checkout/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@xact-checkout/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@xact-checkout/root/environments": ["libs/root/environments/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

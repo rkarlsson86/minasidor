@@ -1,2 +1,2 @@
 # Global Styles
-Extracting styles as a library
+Extracting Styles as a library
