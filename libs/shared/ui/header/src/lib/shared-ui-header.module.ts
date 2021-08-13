@@ -1,9 +1,15 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { HeaderComponent } from './header.component'
+import { SharedUiIconModule } from '@xact-checkout/shared/ui/icon'
+import { RouterModule } from '@angular/router'
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    SharedUiIconModule,
+    RouterModule,
+  ],
   declarations: [
     HeaderComponent,
   ],
@@ -11,4 +17,5 @@ import { HeaderComponent } from './header.component'
     HeaderComponent,
   ],
 })
-export class SharedUiHeaderModule {}
+export class SharedUiHeaderModule {
+}

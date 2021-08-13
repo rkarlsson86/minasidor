@@ -1,4 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { UiIcon } from '@xact-checkout/shared/ui/icon'
+import { UiStore } from '@xact-checkout/shared/data-access/ui-store'
+import { map } from 'rxjs'
 
 @Component({
   selector: 'xact-checkout-header',
@@ -13,8 +16,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
+  navItems$ = this.service.navItems$.pipe(map((navItems) => navItems.filter((navItem) => !navItem.hideOnNavbar)))
+  vm$ = this.service.vm$
 
-  constructor() {
+  constructor(private readonly service: UiStore) {
+  }
+
+  toggleDarkMode(): void {
+    this.service.toggleTheme()
   }
 
 
