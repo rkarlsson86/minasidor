@@ -29,6 +29,8 @@ export class UiStore extends ImmerComponentStore<UiState> {
     this.toggleThemeEffect(this.select((state) => state.theme))
   }
 
+  readonly navItems$ = this.select((s) => s.navItems)
+
   readonly vm$ = this.select(({
                                 theme,
                                 navItems,
