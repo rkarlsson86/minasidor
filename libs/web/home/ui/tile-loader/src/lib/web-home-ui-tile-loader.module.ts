@@ -7,5 +7,8 @@ import { TileLoaderComponent } from './tile-loader.component'
   declarations: [
     TileLoaderComponent
   ],
+  exports: [
+    TileLoaderComponent
+  ],
 })
 export class WebHomeUiTileLoaderModule {}
