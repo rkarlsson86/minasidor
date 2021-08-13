@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 
 @Component({
-  selector: 'simulator-header',
+  selector: 'xact-checkout-header',
   templateUrl: './header.component.html',
   styles: [
     `
