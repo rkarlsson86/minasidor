@@ -392,6 +392,28 @@
           }
         }
       }
+    },
+    "web-shell": {
+      "projectType": "library",
+      "root": "libs/web/shell",
+      "sourceRoot": "libs/web/shell/src",
+      "prefix": "xact-checkout",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web/shell"],
+          "options": {
+            "jestConfig": "libs/web/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/web/shell/src/**/*.ts", "libs/web/shell/src/**/*.html"]
+          }
+        }
+      }
     }
   },
   "cli": {
