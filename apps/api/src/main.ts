@@ -10,7 +10,7 @@ import { AppConfig, appConfiguration } from '@xact-checkout/api/configuration'
 
 async function bootstrap() {
 
-  const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter())
+  const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter(), { cors: true })
 
   const appConfig = app.get<AppConfig>(appConfiguration.KEY)
 

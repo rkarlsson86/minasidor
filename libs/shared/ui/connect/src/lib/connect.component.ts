@@ -1,5 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { DialogRef } from '@ngneat/dialog'
+import { Socket } from 'ngx-socket-io'
+import { ConnectService } from './connect.service'
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'xact-checkout-connect',
@@ -16,8 +19,11 @@ import { DialogRef } from '@ngneat/dialog'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConnectComponent {
+  qrCode$: Observable<string> = this.service.getQrCode();
 
-  constructor(public ref: DialogRef) {
+  constructor(public ref: DialogRef,
+              private readonly service: ConnectService,
+              private readonly socket: Socket) {
   }
 
 }

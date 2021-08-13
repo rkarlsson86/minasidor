@@ -5,6 +5,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { WebShellModule } from '@xact-checkout/web/shell'
 import { RouterModule } from '@angular/router'
 import { DialogModule } from '@ngneat/dialog'
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io'
+
+const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} }
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,6 +16,7 @@ import { DialogModule } from '@ngneat/dialog'
     HttpClientModule,
     RouterModule,
     WebShellModule,
+    SocketIoModule.forRoot(config),
     DialogModule.forRoot({
       sizes: {
         sm: {
