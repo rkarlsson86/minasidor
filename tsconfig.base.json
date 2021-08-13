@@ -24,7 +24,7 @@
       "@xact-checkout/shared/ui/header": ["libs/shared/ui/header/src/index.ts"],
       "@xact-checkout/shared/ui/icon": ["libs/shared/ui/icon/src/index.ts"],
       "@xact-checkout/shared/ui/page": ["libs/shared/ui/page/src/index.ts"],
-      "@xact-checkout/web/home": ["libs/web/home/feature/src/index.ts"],
+      "@xact-checkout/web/home/feature": ["libs/web/home/feature/src/index.ts"],
       "@xact-checkout/web/shell": ["libs/web/shell/src/index.ts"]
     }
   },

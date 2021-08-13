@@ -393,7 +393,7 @@
         }
       }
     },
-    "web-home": {
+    "web-home-feature": {
       "projectType": "library",
       "root": "libs/web/home",
       "sourceRoot": "libs/web/home/feature/src",

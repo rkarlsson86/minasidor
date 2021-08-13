@@ -32,10 +32,10 @@
       "tags": []
     },
     "api-config": {
-      "tags": []
+      "tags": ["scope:api"]
     },
     "api-configuration": {
-      "tags": []
+      "tags": ["scope:api"]
     },
     "root-assets": {
       "tags": ["project:crm", "scope:root", "type:assets"]
@@ -53,16 +53,16 @@
       "tags": []
     },
     "shared-ui-footer": {
-      "tags": []
+      "tags": ["scope:web", "type:ui"]
     },
     "shared-ui-header": {
-      "tags": []
+      "tags": ["scope:web", "type:ui"]
     },
     "shared-ui-icon": {
-      "tags": []
+      "tags": ["scope:web", "type:ui"]
     },
     "shared-ui-page": {
-      "tags": []
+      "tags": ["scope:web", "type:ui"]
     },
     "web": {
       "tags": []
@@ -71,8 +71,8 @@
       "tags": [],
       "implicitDependencies": ["web"]
     },
-    "web-home": {
-      "tags": []
+    "web-home-feature": {
+      "tags": ["scope:home", "type:feature"]
     },
     "web-shell": {
       "tags": []
