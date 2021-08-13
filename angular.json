@@ -395,22 +395,22 @@
     },
     "web-home-feature": {
       "projectType": "library",
-      "root": "libs/web/home",
+      "root": "libs/web/home/feature",
       "sourceRoot": "libs/web/home/feature/src",
       "prefix": "xact-checkout",
       "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/web/home"],
-          "options": {
-            "jestConfig": "libs/web/home/feature/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/web/home/feature/src/**/*.ts", "libs/web/home/feature/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web/home/feature"],
+          "options": {
+            "jestConfig": "libs/web/home/feature/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
