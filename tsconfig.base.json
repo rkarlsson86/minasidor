@@ -17,6 +17,7 @@
     "paths": {
       "@xact-checkout/api/config": ["libs/api/config/src/index.ts"],
       "@xact-checkout/api/configuration": ["libs/api/configuration/src/index.ts"],
+      "@xact-checkout/api/sdk": ["libs/api/sdk/src/index.ts"],
       "@xact-checkout/root/environments": ["libs/root/environments/src/index.ts"],
       "@xact-checkout/shared/data-access/models": ["libs/shared/data-access/models/src/index.ts"],
       "@xact-checkout/shared/data-access/ui-store": ["libs/shared/data-access/ui-store/src/index.ts"],

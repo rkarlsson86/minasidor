@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core'
 import { DialogService } from '@ngneat/dialog'
 import { ConnectComponent } from './connect.component'
+import { HttpClient } from '@angular/common/http'
+import { map, Observable } from 'rxjs'
+import { AppComponent } from '../../../../../../apps/web/src/app/app.component'
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +11,8 @@ import { ConnectComponent } from './connect.component'
 export class ConnectService {
   dialogRef: any
 
-  constructor(private readonly dialog: DialogService) {
+  constructor(private readonly dialog: DialogService,
+              private readonly http: HttpClient) {
   }
 
   open() {
@@ -26,5 +30,12 @@ export class ConnectService {
     }
   }
 
+  getQrCode(): Observable<any> {
+    return this.http.get<string>(`http://localhost:8080/api/v1/sdk/getQrCode/${AppComponent.socketId}`,
+      {
+        // @ts-ignore
+        responseType: 'text'
+      });
+  }
 
 }
