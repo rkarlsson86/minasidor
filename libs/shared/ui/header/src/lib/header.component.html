@@ -1,0 +1,28 @@
+<ng-container *ngIf='vm$ | async as vm'>
+  <header class='dark:bg-gray-900 bg-gray:200 dark:text-white-300 text-purple-300'>
+    <div class='container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center'>
+      <a class='flex title-font font-medium items-center text-purple-300 mb-4 md:mb-0' routerLink='/'>
+        <span class='text-xl'>Xact Checkout</span>
+      </a>
+
+      <nav class='md:ml-auto flex flex-wrap items-center text-base justify-center space-x-2'>
+        <a
+          *ngFor='let link of navItems$ | async'
+          class='hover:bg-purple-400 hover:text-purple-900 rounded bg-purple-800 px-2 py-1'
+          routerLinkActive='border border-violet-400'
+          [routerLink]='link.path'
+        >
+          {{ link.label }}
+        </a>
+
+        <button (click)='toggleDarkMode()' class='flex items-center'>
+          <xact-checkout-icon size='lg' [icon]='vm.icon'></xact-checkout-icon>
+        </button>
+
+        <a href='https://github.com/Xact-Team/xact-checkout' target='_blank'>
+          <xact-checkout-icon size='lg' icon='github'></xact-checkout-icon>
+        </a>
+      </nav>
+    </div>
+  </header>
+</ng-container>
