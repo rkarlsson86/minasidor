@@ -25,7 +25,6 @@ export class UiStore extends ImmerComponentStore<UiState> {
     })
     this.body = this.document.body
     this.initializeEffect()
-    /* Listening for toggle Theme Change */
     this.toggleThemeEffect(this.select((state) => state.theme))
   }
 

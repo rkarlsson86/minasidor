@@ -1,1 +1,1 @@
-export * from './lib/shared-data-access-user-store.module'
+export * from './lib/stores';
