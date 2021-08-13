@@ -5,4 +5,5 @@ export enum UiIcon {
   sun = 'sun',
   close = 'close',
   logout = 'logout',
+  github = 'github',
 }

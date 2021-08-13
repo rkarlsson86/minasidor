@@ -1849,6 +1849,13 @@
     optional "0.1.4"
     tslib "2.3.0"
 
+"@ngneat/dialog@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/dialog/-/dialog-1.6.0.tgz#90c6ff6d0f17eafe226e1c5414320dc3c823e14b"
+  integrity sha512-eReHh8s/nsuIa4Cf/wOMCOiQRuSuh/Johf70yXgvSb0qqlhHRwmRzyQdcKO97+2cOPk5ZKfKkuzCFnU2A2LJdg==
+  dependencies:
+    tslib "^1.10.0"
+
 "@ngneat/spectator@^8.0.3":
   version "8.0.3"
   resolved "https://registry.yarnpkg.com/@ngneat/spectator/-/spectator-8.0.3.tgz#fe6c4d8f6fb9a9aa2017e85e54ae3ef413e9478e"

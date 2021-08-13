@@ -203,6 +203,28 @@
         }
       }
     },
+    "shared-ui-connect": {
+      "projectType": "library",
+      "root": "libs/shared/ui/connect",
+      "sourceRoot": "libs/shared/ui/connect/src",
+      "prefix": "xact-checkout",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/ui/connect"],
+          "options": {
+            "jestConfig": "libs/shared/ui/connect/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/ui/connect/src/**/*.ts", "libs/shared/ui/connect/src/**/*.html"]
+          }
+        }
+      }
+    },
     "shared-ui-footer": {
       "projectType": "library",
       "root": "libs/shared/ui/footer",

@@ -21,6 +21,7 @@
       "@xact-checkout/shared/data-access/models": ["libs/shared/data-access/models/src/index.ts"],
       "@xact-checkout/shared/data-access/ui-store": ["libs/shared/data-access/ui-store/src/index.ts"],
       "@xact-checkout/shared/data-access/user-store": ["libs/shared/data-access/user-store/src/index.ts"],
+      "@xact-checkout/shared/ui/connect": ["libs/shared/ui/connect/src/index.ts"],
       "@xact-checkout/shared/ui/footer": ["libs/shared/ui/footer/src/index.ts"],
       "@xact-checkout/shared/ui/header": ["libs/shared/ui/header/src/index.ts"],
       "@xact-checkout/shared/ui/icon": ["libs/shared/ui/icon/src/index.ts"],
