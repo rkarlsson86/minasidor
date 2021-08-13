@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import '~ngx-toastr/toastr';
+/* You can add global styles to this file, and also import other style files */
+
+/* Fonts */
+html,
+body {
+  font-family: 'Inter', Helvetica, sans-serif;
+  @apply h-screen;
+}
+
+
+:root .ngneat-dialog-hidden {
+  overflow: hidden !important;
+}
+
+
+/* Toast */
+.toast-success {
+  background-color: #5E61E1;
+}
+
+.toast-error {
+  background-color: #FF4564;
+}
