@@ -32,10 +32,16 @@ body {
   background: #FEF9F8;
 }
 
+/* Dialog */
 
 :root .ngneat-dialog-hidden {
   overflow: hidden !important;
 }
+
+:root .ngneat-dialog-backdrop {
+  background-color: rgba(107, 114, 128, 0.75) !important;
+}
+
 
 
 /* Toast */
