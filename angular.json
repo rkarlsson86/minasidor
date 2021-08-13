@@ -415,6 +415,28 @@
         }
       }
     },
+    "web-home-ui-tile": {
+      "projectType": "library",
+      "root": "libs/web/home/ui/tile",
+      "sourceRoot": "libs/web/home/ui/tile/src",
+      "prefix": "xact-checkout",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web/home/ui/tile"],
+          "options": {
+            "jestConfig": "libs/web/home/ui/tile/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/web/home/ui/tile/src/**/*.ts", "libs/web/home/ui/tile/src/**/*.html"]
+          }
+        }
+      }
+    },
     "web-shell": {
       "projectType": "library",
       "root": "libs/web/shell",

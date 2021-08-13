@@ -74,6 +74,9 @@
     "web-home-feature": {
       "tags": ["scope:home", "type:feature"]
     },
+    "web-home-ui-tile": {
+      "tags": []
+    },
     "web-shell": {
       "tags": []
     }
