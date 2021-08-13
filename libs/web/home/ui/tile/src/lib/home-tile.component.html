@@ -1,0 +1,50 @@
+<div class='p-4 bg-container dark:bg-gray-700 rounded'>
+  <div class='relative h-40 w-full mb-4'>
+    <img class='w-full h-full object-cover rounded'
+         src='https://images.unsplash.com/photo-1506792006437-256b665541e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80'
+         alt=''>
+    <span class='absolute top-0 right-0 py-1 px-2 mt-2 mr-2 bg-orange-500 rounded text-xs text-white'
+          *ngIf='nft?.inSell'>
+      In Sell
+    </span>
+  </div>
+  <div class='flex mb-6 justify-between items-center'>
+    <div>
+      <h3 class='text-sm font-medium'>{{nft?.name}}</h3>
+      <span class='text-xs text-gray-500'>{{nft?.category}}</span>
+    </div>
+  </div>
+  <div class='flex mb-2 justify-between items-center'>
+    <h4 class='text-xs font-medium'>Creator</h4>
+    <span class='inline-block py-1 px-2 rounded-full text-xs text-green-500'>
+      {{nft?.creator || 'Not Defined'}}
+    </span>
+  </div>
+  <div class='flex mb-2 justify-between items-center'>
+    <h4 class='text-xs font-medium'>Supply</h4>
+    <span class='inline-block py-1 px-2 rounded-full text-xs text-green-500'>
+      {{nft?.supply || 'Not Defined' }}
+    </span>
+  </div>
+  <div class='mb-5 justify-between items-center'>
+    <h4 class='text-xs font-medium'>Description</h4>
+    <span class='text-xs text-indigo-500 font-medium truncate'>
+      {{nft?.description}}
+    </span>
+  </div>
+  <div class='flex items-ceenter justify-between border-t border-gray-50 pt-4'>
+    <div class='flex'>
+    </div>
+    <a class='py-2 px-3 bg-indigo-500 hover:bg-indigo-600 rounded text-xs text-white transition duration-200'
+       *ngIf='nft?.inSell else sell'
+       href='#'>
+      Checkout
+    </a>
+    <ng-template #sell>
+      <a class='py-2 px-3 font-bold dark:text-gray-800 bg-xact hover:bg-orange-700 rounded-xl text-xs text-white transition duration-200'
+         href='#'>
+        Sell this NFT
+      </a>
+    </ng-template>
+  </div>
+</div>

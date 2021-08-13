@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common'
 import { HomeComponent } from './home.component'
 import { RouterModule } from '@angular/router'
 import { SharedUiPageModule } from '@xact-checkout/shared/ui/page'
+import { WebHomeUiTileModule } from '../../../ui/tile/src/lib/web-home-ui-tile.module'
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { SharedUiPageModule } from '@xact-checkout/shared/ui/page'
       },
     ]),
     SharedUiPageModule,
+    WebHomeUiTileModule
   ],
   declarations: [HomeComponent],
 })

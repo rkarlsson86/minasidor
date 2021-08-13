@@ -2,21 +2,39 @@
   <header class='dark:bg-gray-900 bg-gray:200 dark:text-white-300 text-purple-300'>
     <div class='container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center'>
       <a class='flex title-font font-medium items-center text-purple-300 mb-4 md:mb-0' routerLink='/'>
-        <span class='text-xl'>Xact Checkout</span>
+        <img src="{{vm.theme === 'dark' ? 'assets/images/logo_dark.svg' : 'assets/images/logo_light.svg'}}"
+             width='100px'
+             alt='Logo'>
       </a>
 
       <nav class='md:ml-auto flex flex-wrap items-center text-base justify-center space-x-2'>
         <a
           *ngFor='let link of navItems$ | async'
-          class='hover:bg-purple-400 hover:text-purple-900 rounded bg-purple-800 px-2 py-1'
-          routerLinkActive='border border-violet-400'
+          class='px-2 py-1'
+          routerLinkActive='underline-light'
           [routerLink]='link.path'
         >
           {{ link.label }}
         </a>
 
-        <button (click)='toggleDarkMode()' class='flex items-center'>
+        <a
+          class='px-2 py-1 mr-2 underline-light text-light dark:text-white'
+          target='_blank'
+          href='https://github.com/Xact-Team/xact-checkout'
+        >
+          Github
+        </a>
+
+        <button (click)='toggleDarkMode()' class='flex items-center pointer mr-2'
+                [ngClass]="{'text-yellow-300': vm.theme === 'dark',
+        'text-gray-900': vm.theme === 'light'}">
           <xact-checkout-icon size='lg' [icon]='vm.icon'></xact-checkout-icon>
+        </button>
+
+        <button type='button' class='inline-flex items-center px-4 py-2 text-base rounded-xl
+        font-medium rounded-md text-white dark:text-gray-800 bg-xact hover:bg-indigo-200 focus:outline-none focus:ring-2
+        focus:ring-offset-2 focus:ring-indigo-500 mr-2'>
+          Connect
         </button>
 
         <a href='https://github.com/Xact-Team/xact-checkout' target='_blank'>
