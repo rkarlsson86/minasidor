@@ -18,6 +18,7 @@
       "@xact-checkout/api/config": ["libs/api/config/src/index.ts"],
       "@xact-checkout/api/configuration": ["libs/api/configuration/src/index.ts"],
       "@xact-checkout/root/environments": ["libs/root/environments/src/index.ts"],
+      "@xact-checkout/shared/data-access/ui-store": ["libs/shared/data-access/ui-store/src/index.ts"],
       "@xact-checkout/shared/ui/footer": ["libs/shared/ui/footer/src/index.ts"],
       "@xact-checkout/shared/ui/header": ["libs/shared/ui/header/src/index.ts"],
       "@xact-checkout/shared/ui/icon": ["libs/shared/ui/icon/src/index.ts"],
