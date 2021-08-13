@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
-import { UiIcon } from '@xact-checkout/shared/ui/icon'
 import { UiStore } from '@xact-checkout/shared/data-access/ui-store'
 import { map } from 'rxjs'
 

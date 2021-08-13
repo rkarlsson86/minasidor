@@ -20,7 +20,7 @@ export class UiStore extends ImmerComponentStore<UiState> {
 
   constructor(@Inject(DOCUMENT) private document: Document) {
     super({
-      theme: 'light',
+      theme: 'dark',
       navItems: [],
     })
     this.body = this.document.body

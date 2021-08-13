@@ -12,6 +12,16 @@ body {
   @apply h-screen;
 }
 
+.bg-light {
+  background: #E0D2CE;
+}
+.text-light, a {
+  color: #7A5D57;
+}
+.underline-light {
+  border-bottom: 1px dashed #FF9974;
+}
+
 
 :root .ngneat-dialog-hidden {
   overflow: hidden !important;
