@@ -52,6 +52,9 @@
     "shared-data-access-ui-store": {
       "tags": []
     },
+    "shared-data-access-user-store": {
+      "tags": []
+    },
     "shared-ui-footer": {
       "tags": ["scope:web", "type:ui"]
     },
