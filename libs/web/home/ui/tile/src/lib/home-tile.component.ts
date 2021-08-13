@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core'
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core'
+import { Nft } from '@xact-checkout/shared/data-access/models'
 
 @Component({
   selector: 'xact-checkout-home-tile',
@@ -9,6 +10,5 @@ import { Component, ChangeDetectionStrategy } from '@angular/core'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeTileComponent {
-  constructor() {
-  }
+  @Input() nft!: Nft
 }

@@ -5,4 +5,5 @@ export interface Nft {
   creator: string;
   url: string;
   supply: number;
+  inSell: boolean;
 }
