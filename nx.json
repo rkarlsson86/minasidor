@@ -71,6 +71,9 @@
       "tags": [],
       "implicitDependencies": ["web"]
     },
+    "web-home": {
+      "tags": []
+    },
     "web-shell": {
       "tags": []
     }
