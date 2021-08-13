@@ -37,6 +37,9 @@
     "api-configuration": {
       "tags": ["scope:api"]
     },
+    "api-sdk": {
+      "tags": []
+    },
     "root-assets": {
       "tags": ["project:crm", "scope:root", "type:assets"]
     },
