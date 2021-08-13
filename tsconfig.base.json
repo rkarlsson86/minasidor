@@ -26,6 +26,7 @@
       "@xact-checkout/shared/ui/page": ["libs/shared/ui/page/src/index.ts"],
       "@xact-checkout/web/home/feature": ["libs/web/home/feature/src/index.ts"],
       "@xact-checkout/web/home/ui/tile": ["libs/web/home/ui/tile/src/index.ts"],
+      "@xact-checkout/web/home/ui/tile-loader": ["libs/web/home/ui/tile-loader/src/index.ts"],
       "@xact-checkout/web/shell": ["libs/web/shell/src/index.ts"]
     }
   },
