@@ -46,6 +46,9 @@
     "root-styles": {
       "tags": ["project:crm", "scope:root", "type:styles"]
     },
+    "shared-ui-footer": {
+      "tags": []
+    },
     "shared-ui-header": {
       "tags": []
     },
