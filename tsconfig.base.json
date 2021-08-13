@@ -20,7 +20,8 @@
       "@xact-checkout/root/environments": ["libs/root/environments/src/index.ts"],
       "@xact-checkout/shared/ui/footer": ["libs/shared/ui/footer/src/index.ts"],
       "@xact-checkout/shared/ui/header": ["libs/shared/ui/header/src/index.ts"],
-      "@xact-checkout/shared/ui/icon": ["libs/shared/ui/icon/src/index.ts"]
+      "@xact-checkout/shared/ui/icon": ["libs/shared/ui/icon/src/index.ts"],
+      "@xact-checkout/shared/ui/page": ["libs/shared/ui/page/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
