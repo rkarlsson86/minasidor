@@ -9,10 +9,10 @@ export class SdkController {
   constructor(private readonly service: SdkService) {
   }
 
-  @Get('getQrCode/:clientId')
-  @ApiOperation({ description: 'Connect to Xact allet' })
+  @Get('getQrCode/:socketId')
+  @ApiOperation({ description: 'Connect to Xact Wallet' })
   @ApiOkResponse()
-  connect(@Param('clientId') clientId: string): Promise<string> {
-    return this.service.getQrCode(clientId);
+  connect(@Param('socketId') socketId: string): Promise<string> {
+    return this.service.getQrCode(socketId);
   }
 }

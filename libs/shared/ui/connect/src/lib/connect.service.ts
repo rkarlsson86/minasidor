@@ -2,24 +2,29 @@ import { Injectable } from '@angular/core'
 import { DialogService } from '@ngneat/dialog'
 import { ConnectComponent } from './connect.component'
 import { HttpClient } from '@angular/common/http'
-import { map, Observable } from 'rxjs'
-import { AppComponent } from '../../../../../../apps/web/src/app/app.component'
+import { Observable } from 'rxjs'
+import { Socket } from 'ngx-socket-io'
+import { RequestValidation, UserAccount } from '@xact-wallet-sdk/client'
+import { environment } from '@xact-checkout/root/environments'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConnectService {
   dialogRef: any
+  socketId!: string
 
   constructor(private readonly dialog: DialogService,
+              private readonly socket: Socket,
               private readonly http: HttpClient) {
+    this.connectSocket();
   }
 
   open() {
     this.dialogRef = this.dialog.open(ConnectComponent, {
       closeButton: false,
       enableClose: false,
-      size: 'md',
+      size: 'fullScreen',
     })
   }
 
@@ -30,12 +35,28 @@ export class ConnectService {
     }
   }
 
+  connectSocket() {
+    this.socket.connect();
+      this.socket.on('xactCheckout.connexion', (socketId: string) => {
+        this.socketId = socketId;
+      })
+  }
+
   getQrCode(): Observable<any> {
-    return this.http.get<string>(`http://localhost:8080/api/v1/sdk/getQrCode/${AppComponent.socketId}`,
-      {
-        // @ts-ignore
-        responseType: 'text'
-      });
+        return this.http.get<string>(`${environment.API}/sdk/getQrCode/${this.socketId}`,
+          {
+            // @ts-ignore
+            responseType: 'text',
+          });
+  }
+
+  listenForAuth(): Observable<RequestValidation<UserAccount>> {
+    return new Observable(observer => {
+      this.socket.on('xactCheckout.auth', (user: RequestValidation<UserAccount>) => {
+        this.socket.disconnect()
+        observer.next(user)
+      })
+    })
   }
 
 }

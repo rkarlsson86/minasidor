@@ -23,17 +23,24 @@
           <xact-checkout-icon size='lg' [icon]='vm.icon'></xact-checkout-icon>
         </button>
 
-        <button type='button'
-                (click)="connect()"
-                class='inline-flex items-center px-4 py-2 text-base rounded-xl
+        <div *ngIf='user$ | async as user else auth' class='text-sm'>
+          {{user.accountId}} - {{user.balance}} <i>ħ</i>
+          <a (click)='logout()' class='ml-2 dark:text-white pointer'>
+            <span class='underline'>Logout</span>
+          </a>
+        </div>
+        <ng-template #auth>
+          <button type='button'
+                  (click)='connect()'
+                  class='inline-flex items-center px-4 py-2 text-base rounded-xl
         font-medium rounded-md text-white dark:text-gray-800 bg-xact hover:bg-indigo-200 focus:outline-none focus:ring-2
         focus:ring-offset-2 focus:ring-indigo-500'>
-          Connect
-        </button>
-
-        <a href='https://github.com/Xact-Team/xact-checkout' class='ml-2' target='_blank'>
-          <xact-checkout-icon size='lg' icon='github'></xact-checkout-icon>
-        </a>
+            Connect
+          </button>
+          <a href='https://github.com/Xact-Team/xact-checkout' class='ml-2' target='_blank'>
+            <xact-checkout-icon size='lg' icon='github'></xact-checkout-icon>
+          </a>
+        </ng-template>
       </nav>
     </div>
   </header>

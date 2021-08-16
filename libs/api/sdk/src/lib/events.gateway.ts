@@ -5,8 +5,7 @@ import {
 } from "@nestjs/websockets";
 import {Logger} from "@nestjs/common";
 import { OnEvent } from '@nestjs/event-emitter'
-import { RequestValidation } from '@xact-wallet-sdk/client/lib/models/request.interface'
-import { UserAccount } from '@xact-wallet-sdk/client/lib/models/user.interface'
+import { RequestValidation, UserAccount } from '@xact-wallet-sdk/client'
 
 @WebSocketGateway(3001, {
   cors: {origin: "*"},
@@ -24,13 +23,13 @@ export class EventGateway implements OnGatewayConnection {
   @WebSocketServer() server;
   private logger: Logger = new Logger("EventGateway");
 
-  @OnEvent("app.auth")
-  handleMessage(user: RequestValidation<UserAccount>, clientId: string) {
-    this.server.to(clientId).emit("app.auth", user);
+  @OnEvent("xactCheckout.auth")
+  handleMessage(user: RequestValidation<UserAccount>) {
+    this.server.to(user.socketId).emit("xactCheckout.auth", user);
   }
 
   handleConnection(client, ...args: any[]) {
-    this.server.to(client.id).emit("app.connexion", client.id);
+    this.server.to(client.id).emit("xactCheckout.connexion", client.id);
   }
 
 }
