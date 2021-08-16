@@ -52,6 +52,7 @@
     "@ngneat/svg-icon": "^3.2.0",
     "@ngrx/component-store": "^12.4.0",
     "@nrwl/angular": "12.7.0",
+    "@sweetalert2/ngx-sweetalert2": "^10.0.0",
     "@tailwindcss/custom-forms": "^0.2.1",
     "@tailwindcss/forms": "^0.3.3",
     "@xact-wallet-sdk/client": "^0.3.2",
