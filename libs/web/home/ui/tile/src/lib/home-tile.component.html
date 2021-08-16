@@ -1,7 +1,7 @@
 <div class='p-4 bg-container dark:bg-gray-700 rounded'>
   <div class='relative h-40 w-full mb-4'>
     <img class='w-full h-full object-cover rounded'
-         src='https://images.unsplash.com/photo-1506792006437-256b665541e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80'
+         src='{{nft.url ? nft.url : "https://images.unsplash.com/photo-1506792006437-256b665541e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=334&amp;q=80"}}'
          alt=''>
     <span class='absolute top-0 right-0 py-1 px-2 mt-2 mr-2 bg-orange-500 rounded text-xs text-white'
           *ngIf='nft?.inSell'>
@@ -11,7 +11,7 @@
   <div class='flex mb-6 justify-between items-center'>
     <div>
       <h3 class='text-sm font-medium'>{{nft?.name}}</h3>
-      <span class='text-xs text-gray-500'>{{nft?.category}}</span>
+      <span class='mt-1 text-xs inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800'>{{nft?.category}}</span>
     </div>
   </div>
   <div class='flex mb-2 justify-between items-center'>
@@ -41,8 +41,9 @@
       Checkout
     </a>
     <ng-template #sell>
-      <a class='py-2 px-3 font-bold dark:text-gray-800 bg-xact hover:bg-orange-700 rounded-xl text-xs text-white transition duration-200'
-         href='#'>
+      <a
+        class='py-2 px-3 font-bold dark:text-gray-800 bg-xact rounded-xl text-xs text-white transition duration-200'
+        href='#'>
         Sell this NFT
       </a>
     </ng-template>

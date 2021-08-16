@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core'
-import { Nft } from '@xact-checkout/shared/data-access/models'
+import { NFT } from '@xact-wallet-sdk/client'
+
 
 @Component({
   selector: 'xact-checkout-home-tile',
@@ -10,5 +11,5 @@ import { Nft } from '@xact-checkout/shared/data-access/models'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeTileComponent {
-  @Input() nft!: Nft
+  @Input() nft!: NFT
 }

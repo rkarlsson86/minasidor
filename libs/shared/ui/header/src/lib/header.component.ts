@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { UiStore } from '@xact-checkout/shared/data-access/ui-store'
 import { ConnectService } from '@xact-checkout/shared/ui/connect'
-import { map } from 'rxjs'
 import { NavItem } from '@xact-checkout/shared/data-access/models'
 import { UserStore } from '@xact-checkout/shared/data-access/user-store'
+import { map } from 'rxjs'
 
 @Component({
   selector: 'xact-checkout-header',

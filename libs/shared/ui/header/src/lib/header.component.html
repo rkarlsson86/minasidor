@@ -23,9 +23,9 @@
           <xact-checkout-icon size='lg' [icon]='vm.icon'></xact-checkout-icon>
         </button>
 
-        <div *ngIf='user$ | async as user else auth' class='text-sm'>
-          {{user.accountId}} - {{user.balance}} <i>ħ</i>
-          <a (click)='logout()' class='ml-2 dark:text-white pointer'>
+        <div *ngIf='user$ | async as user else auth' class='text-sm text-gray-900 dark:text-white '>
+          <b>{{user.accountId}} - {{user.balance}} <i>ħ</i></b>
+          <a (click)='logout()' class='ml-2 cursor-pointer'>
             <span class='underline'>Logout</span>
           </a>
         </div>

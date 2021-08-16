@@ -1,14 +1,32 @@
-<xact-checkout-page>
-  <div class='bg-white dark:bg-gray-800 px-4 py-6 sm:p-6 rounded-2xl'>
+<xact-checkout-page *ngIf='vm$ | async as vm'>
+  <div class='bg-white dark:bg-gray-800 px-4 py-6 sm:p-6 rounded-2xl' *ngIf='vm.user else notAuth'>
     <div class='container px-4 mx-auto'>
       <div class='grid grid-cols-1 gap-1 lg:grid-cols-3 md:grid-cols-2'>
-        <div class='w-full p-4'>
-          <xact-checkout-tile-loader></xact-checkout-tile-loader>
-        </div>
-        <div class='w-full p-4'>
-          <xact-checkout-home-tile></xact-checkout-home-tile>
-        </div>
+        <ng-container *ngIf='vm.isLoading else showNFT'>
+          <div class='w-full p-4'>
+            <xact-checkout-tile-loader></xact-checkout-tile-loader>
+          </div>
+          <div class='w-full p-4'>
+            <xact-checkout-tile-loader></xact-checkout-tile-loader>
+          </div>
+        </ng-container>
+        <ng-template #showNFT>
+          <div class='w-full p-4' *ngFor='let nft of vm.user.nft'>
+            <xact-checkout-home-tile [nft]='nft'></xact-checkout-home-tile>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>
+  <ng-template #notAuth>
+    <div class='bg-white dark:bg-gray-800 px-4 py-6 sm:p-6 rounded-2xl text-center'>
+      <img src='https://media.publit.io/file/Web-1280-1.png' width='50%'
+           style='margin-top:5%;margin-left:auto;margin-right:auto'
+           alt='Empty state connect your wallet to create a checkout hbar page'>
+
+      <h2>
+        <a (click)='connect()' class='underline cursor-pointer'>Connect your Wallet</a> to start using Xact Checkout
+      </h2>
+    </div>
+  </ng-template>
 </xact-checkout-page>
