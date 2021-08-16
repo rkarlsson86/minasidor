@@ -530,6 +530,28 @@
         }
       }
     },
+    "web-sell": {
+      "projectType": "library",
+      "root": "libs/web/sell",
+      "sourceRoot": "libs/web/sell/src",
+      "prefix": "xact-checkout",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web/sell"],
+          "options": {
+            "jestConfig": "libs/web/sell/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/web/sell/src/**/*.ts", "libs/web/sell/src/**/*.html"]
+          }
+        }
+      }
+    },
     "web-shell": {
       "projectType": "library",
       "root": "libs/web/shell",
