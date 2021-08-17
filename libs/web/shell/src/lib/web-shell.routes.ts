@@ -12,6 +12,11 @@ export const xactCheckoutShellRoutes: Routes = [
         loadChildren: () =>
           import('@xact-checkout/web/home/feature').then((m) => m.WebHomeFeatureModule),
       },
+      {
+        path: 'sell',
+        loadChildren: () =>
+          import('@xact-checkout/web/sell').then((m) => m.WebSellModule),
+      },
     ],
   },
   {

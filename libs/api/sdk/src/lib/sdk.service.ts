@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
-import { Client, ScopeEnum } from '../../../../../../SDK/ts/packages/client'
 import { AppConfig } from '@xact-checkout/api/configuration'
 import { InjectAppConfig } from '@xact-checkout/api/config'
 import { EventEmitter2 } from '@nestjs/event-emitter'
+import { Client, ScopeEnum, SellNFTDto } from '../../../../../../SDK/ts/packages/client'
 
 @Injectable()
 export class SdkService {
@@ -12,29 +12,39 @@ export class SdkService {
               private readonly eventEmitter: EventEmitter2) {
   }
 
+  /* Init Client */
   async initClient() {
     this.client = new Client({ apiKey: this.appConfig.sdkApi })
-    await this.client.initConnexion();
-    console.log(this.client.clientId);
+    await this.client.initConnexion()
   }
 
+  /* Get QR Code */
   async getQrCode(socketId: string): Promise<string> {
     if (!this.client) {
       await this.initClient()
     }
     const qrCode = await this.client.generateQRCode({
       socketId,
-      scope: [ScopeEnum.PROFILE, ScopeEnum.NFT]
-    });
+      scope: [ScopeEnum.PROFILE, ScopeEnum.NFT],
+    })
     /* Listen for Auth Connexion */
-    this.listenForAuth();
-    return qrCode;
+    this.listenForAuth()
+    return qrCode
   }
 
-  listenForAuth(){
+  /* Listen for new Auth */
+  listenForAuth() {
     this.client.connect().subscribe(user => {
       this.eventEmitter.emit('xactCheckout.auth', user)
     })
+  }
+
+  /* Sell a NFT */
+  async sellNFT(opts: SellNFTDto): Promise<void> {
+    if (!this.client) {
+      await this.initClient()
+    }
+    return this.client.sellNFT(opts)
   }
 
 

@@ -4,7 +4,7 @@ import { ConnectComponent } from './connect.component'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { Socket } from 'ngx-socket-io'
-import { RequestValidation, UserAccount } from '@xact-wallet-sdk/client'
+import { RequestValidation, SellNFTDto, UserAccount } from '@xact-wallet-sdk/client'
 import { environment } from '@xact-checkout/root/environments'
 
 @Injectable({
@@ -17,7 +17,7 @@ export class ConnectService {
   constructor(private readonly dialog: DialogService,
               private readonly socket: Socket,
               private readonly http: HttpClient) {
-    this.connectSocket();
+    this.connectSocket()
   }
 
   open() {
@@ -36,18 +36,19 @@ export class ConnectService {
   }
 
   connectSocket() {
-    this.socket.connect();
-      this.socket.on('xactCheckout.connexion', (socketId: string) => {
-        this.socketId = socketId;
-      })
+    this.socket.connect()
+    this.socket.on('xactCheckout.connexion', (socketId: string) => {
+      this.socketId = socketId
+    })
   }
 
   getQrCode(): Observable<any> {
-        return this.http.get<string>(`${environment.API}/sdk/getQrCode/${this.socketId}`,
-          {
-            // @ts-ignore
-            responseType: 'text',
-          });
+    return this.http.get<string>(`${environment.API}/sdk/getQrCode/${this.socketId}`,
+      {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        responseType: 'text',
+      })
   }
 
   listenForAuth(): Observable<RequestValidation<UserAccount>> {
@@ -57,6 +58,16 @@ export class ConnectService {
         observer.next(user)
       })
     })
+  }
+
+  sellNFT({ fromAccountId, hbarAmount, quantity, nft }: SellNFTDto): Promise<string | undefined> {
+    return this.http.post<string>(`${environment.API}/sdk/sell-nft`, {
+      fromAccountId,
+      hbarAmount,
+      quantity,
+      nft,
+      socketId: this.socketId,
+    }).toPromise()
   }
 
 }

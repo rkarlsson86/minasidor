@@ -6,6 +6,8 @@ import { WebShellModule } from '@xact-checkout/web/shell'
 import { RouterModule } from '@angular/router'
 import { DialogModule } from '@ngneat/dialog'
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io'
+import { ToastrModule } from 'ngx-toastr'
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2'
 
 const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} }
 
@@ -24,6 +26,10 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} }
           height: '250px',
         },
       },
+    }),
+    SweetAlert2Module.forRoot(),
+    ToastrModule.forRoot({
+      preventDuplicates: true,
     }),
   ],
   providers: [],

@@ -125,7 +125,12 @@ export class ConnectComponent {
               private readonly service: ConnectService,
               private readonly store: UserStore) {
     this.user$.subscribe(user => {
-      this.ref.close();
+      try {
+        console.log('user', user);
+        this.ref.close();
+      } catch(e) {
+        console.log('e', e);
+      }
       this.store.setUserEffect(user)
     })
   }
