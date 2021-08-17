@@ -334,6 +334,31 @@
         }
       }
     },
+    "shared-ui-waiting-authorization": {
+      "projectType": "library",
+      "root": "libs/shared/ui/waiting-authorization",
+      "sourceRoot": "libs/shared/ui/waiting-authorization/src",
+      "prefix": "xact-checkout",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/ui/waiting-authorization"],
+          "options": {
+            "jestConfig": "libs/shared/ui/waiting-authorization/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/ui/waiting-authorization/src/**/*.ts",
+              "libs/shared/ui/waiting-authorization/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "web": {
       "projectType": "application",
       "root": "apps/web",
