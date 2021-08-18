@@ -6,6 +6,7 @@ import {
 import {Logger} from "@nestjs/common";
 import { OnEvent } from '@nestjs/event-emitter'
 import { RequestValidation, UserAccount } from '@xact-wallet-sdk/client'
+import { SellNFTDto } from '@xact-wallet-sdk/client/lib/models/token.interface'
 
 @WebSocketGateway(3001, {
   cors: {origin: "*"},
@@ -24,8 +25,13 @@ export class EventGateway implements OnGatewayConnection {
   private logger: Logger = new Logger("EventGateway");
 
   @OnEvent("xactCheckout.auth")
-  handleMessage(user: RequestValidation<UserAccount>) {
+  handleAuth(user: RequestValidation<UserAccount>) {
     this.server.to(user.socketId).emit("xactCheckout.auth", user);
+  }
+
+  @OnEvent("xactCheckout.sell")
+  handleSellNFT(user: RequestValidation<SellNFTDto>) {
+    this.server.to(user.socketId).emit("xactCheckout.sell", user);
   }
 
   handleConnection(client, ...args: any[]) {

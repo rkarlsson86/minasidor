@@ -12,11 +12,16 @@ export class RequestService {
   constructor(private readonly dialog: DialogService) {
   }
 
-  open() {
+  open({ title, subtitle, accountId }: { title: string, subtitle: string, accountId: string }) {
     this.dialogRef = this.dialog.open(WaitingAuthorizationComponent, {
       closeButton: false,
       enableClose: false,
       size: 'fullScreen',
+      data: {
+        title,
+        subtitle,
+        accountId,
+      },
     })
   }
 

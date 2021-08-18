@@ -1,10 +1,11 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
-import { NFT, UserAccount } from '@xact-wallet-sdk/client'
+import { NFT, UserAccount, SellNFTDto } from '../../../../../../SDK/ts/packages/client'
 import { ToastrService } from 'ngx-toastr'
 import { ConnectService } from '@xact-checkout/shared/ui/connect'
 import { UserStore } from '@xact-checkout/shared/data-access/user-store'
+import { RequestService } from '@xact-checkout/shared/ui/waiting-authorization'
 
 @Component({
   selector: 'xact-checkout-sell',
@@ -32,11 +33,16 @@ export class SellComponent {
   constructor(private readonly fb: FormBuilder,
               private readonly toastService: ToastrService,
               private readonly userStore: UserStore,
+              private readonly requestService: RequestService,
               private readonly connectService: ConnectService,
               private readonly router: Router) {
     this.nft = { ...this.router.getCurrentNavigation()?.extras.state?.nft }
     if (Object.keys(this.nft).length === 0) {
       this.router.navigateByUrl('/')
+    } else {
+      if (this.nft.forSale) {
+        this.sellForm.patchValue({...this.nft.forSale})
+      }
     }
   }
 
@@ -52,9 +58,13 @@ export class SellComponent {
         fromAccountId: user.accountId,
         quantity: this.sellForm.get('quantity')?.value,
         hbarAmount: this.sellForm.get('hbarAmount')?.value,
-        nft: this.nft,
+        nft: this.nft
       })
-      this.toastService.success('Your NFT is now on sell !')
+      this.requestService.open({
+        title: 'Waiting for request Validation...',
+        subtitle: 'Please Validate the Request from Xact Wallet',
+        accountId: user.accountId
+      });
     } catch (e) {
       this.toastService.error('Sorry an internal error occurred!')
       console.error(e)

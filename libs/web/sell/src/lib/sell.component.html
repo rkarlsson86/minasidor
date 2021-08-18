@@ -101,6 +101,7 @@
                           style='border: 3px solid #474CFF; color: #474CFF'
                           type='number'
                           [attr.max]='nft.supply'
+                          min='1'
                           class='flex-1 form-input font-bold block w-full text-gray-700 min-w-0 rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5'
                           id='quantity' formControlName='quantity'>
                       </div>
@@ -118,9 +119,23 @@
                   Cancel
                 </button>
                 <button [disabled]='sellForm.invalid'
+                        *ngIf='!nft.forSale else forSale'
                         class='inline-flex justify-center py-2 px-8 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out'
                         type='submit'>Sell
                 </button>
+                <ng-template #forSale>
+                  <button [disabled]='sellForm.invalid'
+                          class='inline-flex justify-center py-2 px-8 border border-transparent text-sm leading-5 font-medium
+                          rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700
+                           focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out mr-4'
+                          type='submit'>Update
+                  </button>
+                  <button class='inline-flex justify-center py-2 px-8 border border-transparent text-sm leading-5
+                  font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none
+                  focus:border-red-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out'>
+                    Delete
+                  </button>
+                </ng-template>
               </div>
             </div>
           </div>

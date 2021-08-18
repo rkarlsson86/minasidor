@@ -4,7 +4,7 @@ import { ConnectComponent } from './connect.component'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { Socket } from 'ngx-socket-io'
-import { RequestValidation, SellNFTDto, UserAccount } from '@xact-wallet-sdk/client'
+import { RequestValidation, ScopeEnum, SellNFTDto, UserAccount } from '../../../../../../../SDK/ts/packages/client'
 import { environment } from '@xact-checkout/root/environments'
 
 @Injectable({
@@ -60,13 +60,26 @@ export class ConnectService {
     })
   }
 
-  sellNFT({ fromAccountId, hbarAmount, quantity, nft }: SellNFTDto): Promise<string | undefined> {
+  listenForSellNFT(): Observable<RequestValidation<SellNFTDto>> {
+    return new Observable(observer => {
+      this.socket.on('xactCheckout.sell', (nft: RequestValidation<SellNFTDto>) => {
+        this.socket.disconnect()
+        observer.next(nft)
+      })
+    })
+  }
+
+  sellNFT(data: SellNFTDto): Promise<string | undefined> {
     return this.http.post<string>(`${environment.API}/sdk/sell-nft`, {
-      fromAccountId,
-      hbarAmount,
-      quantity,
-      nft,
+      ...data,
       socketId: this.socketId,
+    }).toPromise()
+  }
+
+  refreshNFT(accountId: string): Promise<UserAccount | undefined> {
+    return this.http.post<UserAccount>(`${environment.API}/sdk/refresh`, {
+      accountId,
+      scope: [ScopeEnum.PROFILE, ScopeEnum.NFT],
     }).toPromise()
   }
 

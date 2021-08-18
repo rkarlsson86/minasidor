@@ -6,4 +6,5 @@ export enum UiIcon {
   close = 'close',
   logout = 'logout',
   github = 'github',
+  refresh = 'refresh',
 }

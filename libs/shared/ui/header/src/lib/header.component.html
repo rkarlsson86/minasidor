@@ -16,8 +16,12 @@
         >
           {{ link.label }}
         </a>
+        <button *ngIf='user$ | async as user' (click)='refresh(user.accountId)'
+                class='flex items-center cursor-pointer mr-2 text-green-300'>
+          <xact-checkout-icon size='lg' icon='refresh' [animate$]='animateIcon$'></xact-checkout-icon>
+        </button>
 
-        <button (click)='toggleDarkMode()' class='flex items-center pointer mr-2'
+        <button (click)='toggleDarkMode()' class='flex items-center cursor-pointer mr-2'
                 [ngClass]="{'text-yellow-300': vm.theme === 'dark',
         'text-gray-900': vm.theme === 'light'}">
           <xact-checkout-icon size='lg' [icon]='vm.icon'></xact-checkout-icon>

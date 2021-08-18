@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { AppConfig } from '@xact-checkout/api/configuration'
 import { InjectAppConfig } from '@xact-checkout/api/config'
 import { EventEmitter2 } from '@nestjs/event-emitter'
-import { Client, ScopeEnum, SellNFTDto } from '../../../../../../SDK/ts/packages/client'
+import { Client, RefreshAccountDTO, ScopeEnum, SellNFTDto } from '../../../../../../SDK/ts/packages/client'
 
 @Injectable()
 export class SdkService {
@@ -16,6 +16,10 @@ export class SdkService {
   async initClient() {
     this.client = new Client({ apiKey: this.appConfig.sdkApi })
     await this.client.initConnexion()
+    /* Listen for Auth Connexion */
+    this.listenForAuth()
+    /* Listen for Sell */
+    this.listenForSell()
   }
 
   /* Get QR Code */
@@ -27,8 +31,6 @@ export class SdkService {
       socketId,
       scope: [ScopeEnum.PROFILE, ScopeEnum.NFT],
     })
-    /* Listen for Auth Connexion */
-    this.listenForAuth()
     return qrCode
   }
 
@@ -45,6 +47,21 @@ export class SdkService {
       await this.initClient()
     }
     return this.client.sellNFT(opts)
+  }
+
+  /* Listen for new Sell */
+  listenForSell() {
+    this.client.sellNFTValidation().subscribe(nft => {
+      this.eventEmitter.emit('xactCheckout.sell', nft)
+    })
+  }
+
+  /* Refresh User's Account */
+  async refresh(opts: RefreshAccountDTO) {
+    if (!this.client) {
+      await this.initClient()
+    }
+    return this.client.refreshAccount(opts)
   }
 
 
