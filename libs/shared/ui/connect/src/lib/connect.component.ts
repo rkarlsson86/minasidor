@@ -1,6 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { DialogRef } from '@ngneat/dialog'
-import { Socket } from 'ngx-socket-io'
 import { ConnectService } from './connect.service'
 import { Observable } from 'rxjs'
 import { RequestValidation, UserAccount } from '@xact-wallet-sdk/client'
@@ -123,10 +122,14 @@ export class ConnectComponent {
 
   constructor(public ref: DialogRef,
               private readonly service: ConnectService,
-              private readonly store: UserStore) {
+              private readonly userStore: UserStore) {
     this.user$.subscribe(user => {
-      this.ref.close();
-      this.store.setUserEffect(user)
+      try {
+        this.ref.close();
+      } catch(e) {
+        console.log('e', e);
+      }
+      this.userStore.setUserEffect(user)
     })
   }
 

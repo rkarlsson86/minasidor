@@ -3,7 +3,8 @@ import { UiStore } from '@xact-checkout/shared/data-access/ui-store'
 import { ConnectService } from '@xact-checkout/shared/ui/connect'
 import { NavItem } from '@xact-checkout/shared/data-access/models'
 import { UserStore } from '@xact-checkout/shared/data-access/user-store'
-import { map } from 'rxjs'
+import { BehaviorSubject, map } from 'rxjs'
+import { ToastrService } from 'ngx-toastr'
 
 @Component({
   selector: 'xact-checkout-header',
@@ -21,9 +22,12 @@ export class HeaderComponent {
   navItems$ = this.service.navItems$.pipe(map((navItems: NavItem[]) => navItems.filter((navItem) => !navItem.hideOnNavbar)))
   user$ = this.userStore.user$
   vm$ = this.service.vm$
+  animateIcon = new BehaviorSubject(false)
+  animateIcon$ = this.animateIcon.asObservable()
 
   constructor(private readonly service: UiStore,
               private readonly userStore: UserStore,
+              private readonly toastService: ToastrService,
               private readonly connectService: ConnectService) {
   }
 
@@ -38,5 +42,22 @@ export class HeaderComponent {
 
   logout() {
     this.userStore.clearUserEffect()
+  }
+
+  async refresh(accountId: string) {
+    try {
+      if (this.animateIcon.value) {
+        return
+      }
+      this.animateIcon.next(true)
+      const user = await this.connectService.refreshNFT(accountId)
+      user && this.userStore.setUserEffect(user)
+      this.animateIcon.next(false)
+      this.toastService.success('your Account is now up to date')
+    } catch (e) {
+      this.animateIcon.next(false)
+      this.toastService.error('Sorry an internal error occurred!')
+      console.error(e)
+    }
   }
 }

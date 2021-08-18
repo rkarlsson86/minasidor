@@ -4,7 +4,7 @@ import { ConnectComponent } from './connect.component'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { Socket } from 'ngx-socket-io'
-import { RequestValidation, UserAccount } from '@xact-wallet-sdk/client'
+import { RequestValidation, ScopeEnum, SellNFTDto, UserAccount } from '../../../../../../../SDK/ts/packages/client'
 import { environment } from '@xact-checkout/root/environments'
 
 @Injectable({
@@ -17,7 +17,7 @@ export class ConnectService {
   constructor(private readonly dialog: DialogService,
               private readonly socket: Socket,
               private readonly http: HttpClient) {
-    this.connectSocket();
+    this.connectSocket()
   }
 
   open() {
@@ -36,18 +36,19 @@ export class ConnectService {
   }
 
   connectSocket() {
-    this.socket.connect();
-      this.socket.on('xactCheckout.connexion', (socketId: string) => {
-        this.socketId = socketId;
-      })
+    this.socket.connect()
+    this.socket.on('xactCheckout.connexion', (socketId: string) => {
+      this.socketId = socketId
+    })
   }
 
   getQrCode(): Observable<any> {
-        return this.http.get<string>(`${environment.API}/sdk/getQrCode/${this.socketId}`,
-          {
-            // @ts-ignore
-            responseType: 'text',
-          });
+    return this.http.get<string>(`${environment.API}/sdk/getQrCode/${this.socketId}`,
+      {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        responseType: 'text',
+      })
   }
 
   listenForAuth(): Observable<RequestValidation<UserAccount>> {
@@ -57,6 +58,29 @@ export class ConnectService {
         observer.next(user)
       })
     })
+  }
+
+  listenForSellNFT(): Observable<RequestValidation<SellNFTDto>> {
+    return new Observable(observer => {
+      this.socket.on('xactCheckout.sell', (nft: RequestValidation<SellNFTDto>) => {
+        this.socket.disconnect()
+        observer.next(nft)
+      })
+    })
+  }
+
+  sellNFT(data: SellNFTDto): Promise<string | undefined> {
+    return this.http.post<string>(`${environment.API}/sdk/sell-nft`, {
+      ...data,
+      socketId: this.socketId,
+    }).toPromise()
+  }
+
+  refreshNFT(accountId: string): Promise<UserAccount | undefined> {
+    return this.http.post<UserAccount>(`${environment.API}/sdk/refresh`, {
+      accountId,
+      scope: [ScopeEnum.PROFILE, ScopeEnum.NFT],
+    }).toPromise()
   }
 
 }

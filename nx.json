@@ -73,6 +73,9 @@
     "shared-ui-page": {
       "tags": ["scope:web", "type:ui"]
     },
+    "shared-ui-waiting-authorization": {
+      "tags": []
+    },
     "web": {
       "tags": []
     },
@@ -87,6 +90,9 @@
       "tags": []
     },
     "web-home-ui-tile-loader": {
+      "tags": []
+    },
+    "web-sell": {
       "tags": []
     },
     "web-shell": {

@@ -10,7 +10,7 @@ interface UserState {
   isLoading: boolean;
 }
 
-const LS_USER_KEY = '@@CHECKOUT/user'
+const LS_USER_KEY = '@@CHECKOUT/user';
 
 @Injectable({ providedIn: 'root' })
 export class UserStore extends ImmerComponentStore<UserState> {
@@ -26,6 +26,7 @@ export class UserStore extends ImmerComponentStore<UserState> {
   }
 
   readonly user$ = this.select((s) => s.user)
+  readonly isLoading$ = this.select((s) => s.isLoading)
 
   readonly vm$ = this.select(({
                                 user,
@@ -42,7 +43,7 @@ export class UserStore extends ImmerComponentStore<UserState> {
           const user = JSON.parse(userStorage)
           this.patchState({ user: user as UserAccount })
         }
-      }),
+      })
     ),
   )
 
