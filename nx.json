@@ -79,6 +79,9 @@
     "web": {
       "tags": []
     },
+    "web-checkout": {
+      "tags": []
+    },
     "web-e2e": {
       "tags": [],
       "implicitDependencies": ["web"]
