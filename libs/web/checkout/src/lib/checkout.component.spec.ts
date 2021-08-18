@@ -1,13 +1,13 @@
 import { RouterTestingModule } from '@angular/router/testing'
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest'
-import { TileLoaderComponent } from './tile-loader.component'
+import { CheckoutComponent } from './checkout.component'
 
 
-describe('TileLoaderComponent', () => {
-  let spectator: Spectator<TileLoaderComponent>
+describe('CheckoutComponent', () => {
+  let spectator: Spectator<CheckoutComponent>
 
   const createComponent = createComponentFactory({
-    component: TileLoaderComponent,
+    component: CheckoutComponent,
     imports: [RouterTestingModule],
     shallow: true,
   })
