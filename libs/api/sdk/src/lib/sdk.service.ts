@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { AppConfig } from '@xact-checkout/api/configuration'
 import { InjectAppConfig } from '@xact-checkout/api/config'
 import { EventEmitter2 } from '@nestjs/event-emitter'
-import { Client, RefreshAccountDTO, ScopeEnum, SellNFTDto } from '../../../../../../SDK/ts/packages/client'
+import { Client, NFTForSale, RefreshAccountDTO, ScopeEnum, SellNFTDto } from '../../../../../../SDK/ts/packages/client'
 
 @Injectable()
 export class SdkService {
@@ -62,6 +62,13 @@ export class SdkService {
       await this.initClient()
     }
     return this.client.refreshAccount(opts)
+  }
+
+  async getNFTForSale(tokenId: string): Promise<NFTForSale>{
+    if (!this.client) {
+      await this.initClient()
+    }
+    return this.client.getNFTForSale({ tokenId })
   }
 
 

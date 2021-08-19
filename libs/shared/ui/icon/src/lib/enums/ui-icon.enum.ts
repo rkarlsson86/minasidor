@@ -7,4 +7,6 @@ export enum UiIcon {
   logout = 'logout',
   github = 'github',
   refresh = 'refresh',
+  more = 'more',
+  less = 'less',
 }
