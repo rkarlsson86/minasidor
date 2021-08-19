@@ -2,9 +2,15 @@ import { Injectable } from '@angular/core'
 import { DialogService } from '@ngneat/dialog'
 import { ConnectComponent } from './connect.component'
 import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs'
+import { map, Observable, switchMap } from 'rxjs'
 import { Socket } from 'ngx-socket-io'
-import { RequestValidation, ScopeEnum, SellNFTDto, UserAccount } from '../../../../../../../SDK/ts/packages/client'
+import {
+  NFTForSale,
+  RequestValidation,
+  ScopeEnum,
+  SellNFTDto,
+  UserAccount,
+} from '../../../../../../../SDK/ts/packages/client'
 import { environment } from '@xact-checkout/root/environments'
 
 @Injectable({
@@ -81,6 +87,23 @@ export class ConnectService {
       accountId,
       scope: [ScopeEnum.PROFILE, ScopeEnum.NFT],
     }).toPromise()
+  }
+
+  getNFTForSale(tokenId: string): Observable<NFTForSale & {media: string}> {
+    return this.http.get<NFTForSale>(`${environment.API}/sdk/nft-for-sale?tokenId=${tokenId}`).pipe(
+      switchMap(res => {
+        return this.http.get(res.nft.url).pipe(
+          map(
+            (nft: any) => {
+              return {
+                ...res,
+                media: nft.photo
+              }
+            }
+          )
+        )
+      })
+    )
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
-import { NFT, UserAccount, SellNFTDto } from '../../../../../../SDK/ts/packages/client'
+import { NFT, UserAccount } from '../../../../../../SDK/ts/packages/client'
 import { ToastrService } from 'ngx-toastr'
 import { ConnectService } from '@xact-checkout/shared/ui/connect'
 import { UserStore } from '@xact-checkout/shared/data-access/user-store'

@@ -3,7 +3,7 @@ import { LayoutComponent } from './layout/main/layout.component'
 
 export const xactCheckoutShellRoutes: Routes = [
   {
-    path: '',
+    path: 'app',
     component: LayoutComponent,
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -20,7 +20,12 @@ export const xactCheckoutShellRoutes: Routes = [
     ],
   },
   {
+    path: 'checkout/:tokenId',
+    loadChildren: () =>
+      import('@xact-checkout/web/checkout').then((m) => m.WebCheckoutModule),
+  },
+  {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'app',
   },
 ]

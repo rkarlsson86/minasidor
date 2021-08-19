@@ -1,7 +1,7 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common'
 import { SdkService } from './sdk.service'
 import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger'
-import { ScopeEnum, SellNFTDto } from '../../../../../../SDK/ts/packages/client'
+import { NFTForSale, ScopeEnum, SellNFTDto } from '../../../../../../SDK/ts/packages/client'
 
 @ApiTags('SDK')
 @Controller()
@@ -32,5 +32,13 @@ export class SdkController {
   sellNFT(@Body() opts: SellNFTDto): Promise<void> {
     return this.service.sellNFT(opts)
   }
+
+  @Get('nft-for-sale')
+  @ApiOperation({ description: 'Get NFT For Sale' })
+  @ApiOkResponse()
+  getNFTForSale(@Query('tokenId') tokenId: string): Promise<NFTForSale> {
+    return this.service.getNFTForSale(tokenId)
+  }
+
 
 }

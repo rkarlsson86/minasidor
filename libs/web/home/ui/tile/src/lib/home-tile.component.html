@@ -41,7 +41,7 @@
   <div class='flex mb-2 justify-between items-center' *ngIf='nft?.forSale'>
     <h4 class='text-xs font-medium'>Checkout URL</h4>
     <span class='text-xs text-orange-500 font-medium'>
-      <a [href]='nft?.forSale?.slug' target='_blank'>Go to Checkout</a>
+      <a class='underline' routerLink='/checkout/{{nft?.forSale?.tokenId}}' target='_blank'>Go to Checkout</a>
     </span>
   </div>
   <div class='mb-5 justify-between items-center overflow-auto h-20'>
