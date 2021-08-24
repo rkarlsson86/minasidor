@@ -1,0 +1,74 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import '~ngx-toastr/toastr';
+/* You can add global styles to this file, and also import other style files */
+
+/* Fonts */
+html,
+body {
+  font-family: 'Inter', Helvetica, sans-serif;
+  @apply h-screen;
+}
+
+.bg-light {
+  background: #E0D2CE;
+}
+
+.bg-xact {
+  background: #42C6FA;
+}
+
+.text-light {
+  color: #7A5D57;
+}
+
+.underline-light {
+  border-bottom: 1px dashed #FF9974;
+}
+
+.bg-container {
+  background: #FEF9F8;
+}
+
+/* Dialog */
+:root .ngneat-dialog-hidden {
+  overflow: hidden !important;
+}
+
+:root .ngneat-dialog-backdrop {
+  background-color: rgba(107, 114, 128, 0.75) !important;
+}
+
+
+
+/* Toast */
+.toast-success {
+  background-color: #5E61E1;
+}
+
+.toast-error {
+  background-color: #FF4564;
+}
+
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}

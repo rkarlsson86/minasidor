@@ -1,0 +1,79 @@
+<section class='py-8 bg-gray-900'>
+  <div class='container px-4 mx-auto'>
+    <nav class='relative'>
+      <div class='flex justify-between items-center'>
+        <a class='text-lg font-medium' href='#'>
+          <img class='h-7' src='assets/images/logo_dark.svg' alt='' width='auto'>
+        </a>
+        <div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>
+<ng-container *ngIf='nft$ | async as nft'>
+  <section class='relative ' style='padding-top: 3rem; padding-bottom: 5rem;'>
+    <div class='absolute top-0 left-0 lg:bottom-0 h-128 lg:h-auto w-full lg:w-8/12 bg-gray-50'></div>
+    <div class='relative container px-4 mx-auto'>
+      <div class='flex flex-wrap items-center -mx-4'>
+        <div class='w-full lg:w-1/2 px-4 mb-12 lg:mb-0'>
+          <div class='max-w-lg'>
+            <h2 class='mb-5 text-2xl font-semibold font-heading'>« {{nft?.nft?.name}} »</h2>
+            <p class='text-s mb-6 text-gray-500'>
+              <strong>Description:</strong> {{nft?.nft?.description}}<br><br>
+
+              <strong>Category:</strong> {{nft?.nft?.category}}<br>
+
+              <strong>Creator:</strong> {{nft?.nft?.creator}}<br>
+
+              <strong>Token Id:</strong> {{nft?.nft?.tokenId}}<br>
+
+              <strong>Total number of copies:</strong> {{nft?.quantity}}
+            </p>
+
+            <p>
+              <img class='img-nft' width='220'
+                   *ngIf='type === "image"'
+                   [src]='nft?.media'
+                   alt=''>
+              <img class='img-nft' width='220'
+                   *ngIf='type !== "image"'
+                   src='assets/images/{{type || "any"}}.svg'
+                   alt=''>
+            </p>
+          </div>
+        </div>
+        <div class='w-full lg:w-1/2 px-4'>
+          <div class='lg:max-w-md p-6 lg:px-10 lg:py-12 bg-white text-center border rounded-xl'>
+            <form action='#'>
+              <h3 class='mb-2 text-3xl font-semibold font-heading'>Pay instantly</h3>
+              <span class='mb-2 text-lg font-semibold'><span
+                style='color: #43C6FA;'>{{nft?.hbarAmount}} ℏ</span> <small> to {{nft?.accountId}}</small></span>
+              <span class='inline-block mb-5 text-xs font-semibold' style='padding-left: 15%;padding-right: 15%;'>with your Hedera Hashgraph mainnet account and receive 1 copy of this NFT</span>
+
+              <div class='mb-2'>
+                <ng-container *ngIf='nft?.quantity! > 0 else noMoreCopy'>
+                  <img
+                    class='w-full p-10'
+                    [src]='nft?.qrCode'>
+                  <p class='text-center'>Scan this QR Code with <a href='https://wallet.xact.ac' target='_blank'>Xact
+                    Wallet App</a></p>
+                </ng-container>
+                <ng-template #noMoreCopy>
+                  <span class='underline'>Sorry this NFT has no more item to offer !</span>
+                </ng-template>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class='container px-4 mx-auto'>
+    <div>
+      <p class='text-gray text-xs mt-4' style='opacity: 0.8;'>Copyright Xact Checkout by Xact Wallet - <a
+        href='https://terms.wallet.xact.ac'>Terms</a></p>
+    </div>
+  </footer>
+</ng-container>

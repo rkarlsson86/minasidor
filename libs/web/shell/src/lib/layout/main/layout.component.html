@@ -1,0 +1,9 @@
+<div class='flex flex-col justify-between bg-light text-light dark:bg-gray-900 dark:text-white'>
+  <xact-checkout-header></xact-checkout-header>
+  <div class='min-h-screen md:flex'>
+    <div class='flex-1 p-5 overflow-hidden' *ngIf='vm$ | async as vm'>
+      <router-outlet></router-outlet>
+      <xact-checkout-footer></xact-checkout-footer>
+    </div>
+  </div>
+</div>

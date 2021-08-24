@@ -15,7 +15,25 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@xact-checkout/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@xact-checkout/api/config": ["libs/api/config/src/index.ts"],
+      "@xact-checkout/api/configuration": ["libs/api/configuration/src/index.ts"],
+      "@xact-checkout/api/sdk": ["libs/api/sdk/src/index.ts"],
+      "@xact-checkout/root/environments": ["libs/root/environments/src/index.ts"],
+      "@xact-checkout/shared/data-access/models": ["libs/shared/data-access/models/src/index.ts"],
+      "@xact-checkout/shared/data-access/ui-store": ["libs/shared/data-access/ui-store/src/index.ts"],
+      "@xact-checkout/shared/data-access/user-store": ["libs/shared/data-access/user-store/src/index.ts"],
+      "@xact-checkout/shared/ui/connect": ["libs/shared/ui/connect/src/index.ts"],
+      "@xact-checkout/shared/ui/footer": ["libs/shared/ui/footer/src/index.ts"],
+      "@xact-checkout/shared/ui/header": ["libs/shared/ui/header/src/index.ts"],
+      "@xact-checkout/shared/ui/icon": ["libs/shared/ui/icon/src/index.ts"],
+      "@xact-checkout/shared/ui/page": ["libs/shared/ui/page/src/index.ts"],
+      "@xact-checkout/shared/ui/waiting-authorization": ["libs/shared/ui/waiting-authorization/src/index.ts"],
+      "@xact-checkout/web/checkout": ["libs/web/checkout/src/index.ts"],
+      "@xact-checkout/web/home/feature": ["libs/web/home/feature/src/index.ts"],
+      "@xact-checkout/web/home/ui/tile": ["libs/web/home/ui/tile/src/index.ts"],
+      "@xact-checkout/web/home/ui/tile-loader": ["libs/web/home/ui/tile-loader/src/index.ts"],
+      "@xact-checkout/web/sell": ["libs/web/sell/src/index.ts"],
+      "@xact-checkout/web/shell": ["libs/web/shell/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

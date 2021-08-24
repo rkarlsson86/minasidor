@@ -1,0 +1,69 @@
+<div class='p-4 bg-container dark:bg-gray-700 rounded'>
+  <div class='relative h-40 w-full mb-4' *ngIf='media$ | async as media'>
+    <img class='w-full h-full object-cover rounded'
+         *ngIf='type === "image"'
+         src='{{media}}'
+         alt=''>
+    <img class='w-full h-full object-cover rounded'
+         *ngIf='type !== "image"'
+         src='assets/images/{{type || "any"}}.svg'
+         alt=''>
+    <span class='absolute top-0 right-0 py-1 px-2 mt-2 mr-2 bg-blue-800 rounded text-xs text-white'
+          *ngIf='nft?.forSale'>
+      For Sale (x{{nft?.forSale?.quantity}}) - {{nft?.forSale?.hbarAmount}} ℏ
+    </span>
+  </div>
+  <div class='flex mb-6 justify-between items-center'>
+    <div>
+      <h3 class='text-sm font-medium'>{{nft?.name}}</h3>
+      <span
+        class='mt-1 text-xs inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800'>{{nft?.category}}</span>
+    </div>
+  </div>
+  <div class='flex mb-2 justify-between items-center'>
+    <h4 class='text-xs font-medium'>Creator</h4>
+    <span class='inline-block py-1 px-2 rounded-full text-xs text-green-500'>
+      {{nft?.creator || 'Not Defined'}}
+    </span>
+  </div>
+  <div class='flex mb-2 justify-between items-center'>
+    <h4 class='text-xs font-medium'>Supply</h4>
+    <span class='inline-block py-1 px-2 rounded-full text-xs text-green-500'>
+      {{nft?.supply || 'Not Defined' }}
+    </span>
+  </div>
+  <div class='flex mb-2 justify-between items-center'>
+    <h4 class='text-xs font-medium'>IPFS File</h4>
+    <span class='inline-block py-1 px-2 rounded-full text-xs text-green-500'>
+      <a [href]='nft?.url' *ngIf='nft?.url' target='_blank'>Open</a>
+    </span>
+  </div>
+  <div class='flex mb-2 justify-between items-center' *ngIf='nft?.forSale'>
+    <h4 class='text-xs font-medium'>Checkout URL</h4>
+    <span class='text-xs text-blue-500 font-medium'>
+      <a class='underline' routerLink='/checkout/{{nft?.forSale?.tokenId}}' target='_blank'>Go to Checkout</a>
+    </span>
+  </div>
+  <div class='mb-5 justify-between items-center overflow-auto h-20'>
+    <h4 class='text-xs font-medium'>Description</h4>
+    <span class='text-xs text-gray-900 font-medium'>
+      {{nft?.description}}
+    </span>
+  </div>
+  <div class='flex items-ceenter justify-between border-t border-gray-50 pt-4'>
+    <div class='flex'>
+    </div>
+    <a class='py-2 px-3 bg-blue-800 rounded-xl text-xs text-white transition duration-200 cursor-pointer'
+       *ngIf='nft?.forSale else sell'
+       (click)='sellHandler(nft)'>
+      Update
+    </a>
+    <ng-template #sell>
+      <a
+        class='py-2 px-3 font-bold dark:text-gray-800 bg-xact rounded-xl text-xs text-white transition duration-200 cursor-pointer'
+        (click)='sellHandler(nft)'>
+        Sell this NFT
+      </a>
+    </ng-template>
+  </div>
+</div>

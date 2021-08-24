@@ -14,12 +14,7 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "MzAwYThiMjItZGEzYy00Njc1LWFlNjAtYWEyNzJjZmNhNmVjfHJlYWQtd3JpdGU="
       }
     }
@@ -36,17 +31,75 @@
     "api": {
       "tags": []
     },
-    "api-interfaces": {
+    "api-config": {
+      "tags": ["scope:api"]
+    },
+    "api-configuration": {
+      "tags": ["scope:api"]
+    },
+    "api-sdk": {
+      "tags": []
+    },
+    "root-assets": {
+      "tags": ["project:crm", "scope:root", "type:assets"]
+    },
+    "root-environments": {
+      "tags": []
+    },
+    "root-styles": {
+      "tags": ["project:crm", "scope:root", "type:styles"]
+    },
+    "shared-data-access-models": {
+      "tags": []
+    },
+    "shared-data-access-ui-store": {
+      "tags": []
+    },
+    "shared-data-access-user-store": {
+      "tags": []
+    },
+    "shared-ui-connect": {
+      "tags": []
+    },
+    "shared-ui-footer": {
+      "tags": ["scope:web", "type:ui"]
+    },
+    "shared-ui-header": {
+      "tags": ["scope:web", "type:ui"]
+    },
+    "shared-ui-icon": {
+      "tags": ["scope:web", "type:ui"]
+    },
+    "shared-ui-page": {
+      "tags": ["scope:web", "type:ui"]
+    },
+    "shared-ui-waiting-authorization": {
       "tags": []
     },
     "web": {
       "tags": []
     },
+    "web-checkout": {
+      "tags": []
+    },
     "web-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "web"
-      ]
+      "implicitDependencies": ["web"]
+    },
+    "web-home-feature": {
+      "tags": ["scope:home", "type:feature"]
+    },
+    "web-home-ui-tile": {
+      "tags": []
+    },
+    "web-home-ui-tile-loader": {
+      "tags": []
+    },
+    "web-sell": {
+      "tags": []
+    },
+    "web-shell": {
+      "tags": []
     }
   }
 }
