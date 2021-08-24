@@ -1,9 +1,18 @@
 <xact-checkout-page *ngIf='vm$ | async as vm'>
   <ng-container *ngIf='vm.user'>
     <swal
+      #deleteSellSwal
+      title='Are you sure to delete the sell of this NFT ?'
+      text='A request will be sent to your account on Xact Wallet. Your NFT will be withdraw to your account'
+      icon='question'
+      [showCancelButton]='true'
+      [focusCancel]='true'
+      (confirm)='delete(vm.user)'>
+    </swal>
+    <swal
       #sellSwal
       title='Are you sure to sell this NFT ?'
-      text='A request will be sent to your account on Xact Wallet'
+      text='A request will be sent to your account on Xact Wallet and the NFT will be transferred to PluralNFT escrow account. You will be able to withdraw your NFT to your account whenever you want'
       icon='question'
       [showCancelButton]='true'
       [focusCancel]='true'
@@ -11,7 +20,7 @@
     </swal>
     <div class='bg-white dark:bg-gray-800 px-4 py-6 sm:p-6 rounded-2xl'>
       <div class='container px-4 mx-auto'>
-        <form [formGroup]='sellForm' (submit)='sellSwal.fire()'>
+        <form [formGroup]='sellForm'>
           <div>
             <div>
               <div
@@ -80,7 +89,7 @@
                   <div
                     class='mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5'>
                     <label class='block text-sm font-medium leading-5 dark:text-white text-gray-700 sm:mt-px sm:pt-2'
-                           for='unit_price'>Unit Price in Hbar</label>
+                           for='unit_price'>Unit Price in Hbar ( 5% will be taken )</label>
                     <div class='mt-1 sm:mt-0 sm:col-span-2'>
                       <div class='max-w-lg flex rounded-md shadow-sm'>
                         <input
@@ -94,7 +103,7 @@
                   <div
                     class='mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5'>
                     <label class='block text-sm font-medium leading-5 dark:text-white text-gray-700 sm:mt-px sm:pt-2'
-                           for='quantity'>Quantity to Sell</label>
+                           for='quantity'>Quantity to Sell (Max {{nft.supply}})</label>
                     <div class='mt-1 sm:mt-0 sm:col-span-2'>
                       <div class='max-w-lg flex rounded-md shadow-sm'>
                         <input
@@ -121,16 +130,12 @@
                 <button [disabled]='sellForm.invalid'
                         *ngIf='!nft.forSale else forSale'
                         class='inline-flex justify-center py-2 px-8 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out'
-                        type='submit'>Sell
+                        (click)='sellSwal.fire()'>Sell <span class='ml-1' *ngIf='hbarAmount'>for {{hbarAmount + (hbarAmount*5/100)}} ℏ</span>
                 </button>
                 <ng-template #forSale>
-                  <button [disabled]='sellForm.invalid'
-                          class='inline-flex justify-center py-2 px-8 border border-transparent text-sm leading-5 font-medium
-                          rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700
-                           focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out mr-4'
-                          type='submit'>Update
-                  </button>
-                  <button class='inline-flex justify-center py-2 px-8 border border-transparent text-sm leading-5
+                  <button
+                    (click)='deleteSellSwal.fire()'
+                    class='inline-flex justify-center py-2 px-8 border border-transparent text-sm leading-5
                   font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none
                   focus:border-red-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out'>
                     Delete

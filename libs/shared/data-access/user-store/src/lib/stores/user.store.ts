@@ -3,7 +3,8 @@ import { Inject, Injectable } from '@angular/core'
 import { ImmerComponentStore } from 'ngrx-immer/component-store'
 import { delay, tap } from 'rxjs/operators'
 import { tapResponse } from '@ngrx/component-store'
-import { UserAccount } from '@xact-wallet-sdk/client'
+import { UserAccount } from '../../../../../../../../SDK/ts/packages/client'
+import { NFT } from '@xact-wallet-sdk/client'
 
 interface UserState {
   user: UserAccount | null;
@@ -59,6 +60,9 @@ export class UserStore extends ImmerComponentStore<UserState> {
     user$.pipe(
       tap(() => this.updateIsLoading(true)),
       tapResponse((user: UserAccount) => {
+        if(user.nft) {
+          user.nft = user.nft.sort((a: NFT, b: NFT) => !!b.forSale as any - (!!a.forSale as any))
+        }
         this.updateUser(user)
         localStorage.setItem(LS_USER_KEY, JSON.stringify(user))
       }, console.error),

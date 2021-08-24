@@ -75,11 +75,24 @@ export class ConnectService {
     })
   }
 
+  listenForDeletion(): Observable<void> {
+    return new Observable(observer => {
+      this.socket.on('xactCheckout.remove', () => {
+        this.socket.disconnect()
+        observer.next()
+      })
+    })
+  }
+
   sellNFT(data: SellNFTDto): Promise<string | undefined> {
     return this.http.post<string>(`${environment.API}/sdk/sell-nft`, {
       ...data,
       socketId: this.socketId,
     }).toPromise()
+  }
+
+  deleteNFT(tokenId: string): Promise<string | undefined> {
+    return this.http.delete<string>(`${environment.API}/sdk/delete-nft/${tokenId}?socketId=${this.socketId}`).toPromise()
   }
 
   refreshNFT(accountId: string): Promise<UserAccount | undefined> {
@@ -89,7 +102,7 @@ export class ConnectService {
     }).toPromise()
   }
 
-  getNFTForSale(tokenId: string): Observable<NFTForSale & {media: string}> {
+  getNFTForSale(tokenId: string): Observable<NFTForSale & { media: string }> {
     return this.http.get<NFTForSale>(`${environment.API}/sdk/nft-for-sale?tokenId=${tokenId}`).pipe(
       switchMap(res => {
         return this.http.get(res.nft.url).pipe(
@@ -97,12 +110,12 @@ export class ConnectService {
             (nft: any) => {
               return {
                 ...res,
-                media: nft.photo
+                media: nft.photo,
               }
-            }
-          )
+            },
+          ),
         )
-      })
+      }),
     )
   }
 

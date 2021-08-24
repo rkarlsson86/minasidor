@@ -24,7 +24,7 @@
 
               <strong>Category:</strong> {{nft?.nft?.category}}<br>
 
-              <strong>Creator:</strong> @{{nft?.nft?.creator}}<br>
+              <strong>Creator:</strong> {{nft?.nft?.creator}}<br>
 
               <strong>Token Id:</strong> {{nft?.nft?.tokenId}}<br>
 
@@ -32,7 +32,14 @@
             </p>
 
             <p>
-              <img [src]='nft?.media' alt='NFT' class='img-nft' width='220'>
+              <img class='img-nft' width='220'
+                   *ngIf='type === "image"'
+                   [src]='nft?.media'
+                   alt=''>
+              <img class='img-nft' width='220'
+                   *ngIf='type !== "image"'
+                   src='assets/images/{{type || "any"}}.svg'
+                   alt=''>
             </p>
           </div>
         </div>
@@ -45,12 +52,16 @@
               <span class='inline-block mb-5 text-xs font-semibold' style='padding-left: 15%;padding-right: 15%;'>with your Hedera Hashgraph mainnet account and receive 1 copy of this NFT</span>
 
               <div class='mb-2'>
-                <img
-                  class='w-full p-10'
-                  [src]='nft?.qrCode'
-                  alt='QR Code pay'>
-                <p class=' text-center'>Scan this QR Code with <a href='https://wallet.xact.ac' target='_blank'>Xact
-                  Wallet App</a></p>
+                <ng-container *ngIf='nft?.quantity! > 0 else noMoreCopy'>
+                  <img
+                    class='w-full p-10'
+                    [src]='nft?.qrCode'>
+                  <p class='text-center'>Scan this QR Code with <a href='https://wallet.xact.ac' target='_blank'>Xact
+                    Wallet App</a></p>
+                </ng-container>
+                <ng-template #noMoreCopy>
+                  <span class='underline'>Sorry this NFT has no more item to offer !</span>
+                </ng-template>
               </div>
 
             </form>

@@ -30,7 +30,7 @@ export class HomeTileComponent implements OnInit {
       this.media$ = this.http.get(this.nft.url)
         .pipe(
           map((res: any) => {
-            this.type = this.getTypeNft(res.photo)
+            this.type = HomeTileComponent.getTypeNft(res.photo)
             return res.photo
           }))
     } else {
@@ -38,7 +38,7 @@ export class HomeTileComponent implements OnInit {
     }
   }
 
-  getTypeNft(link: string): string {
+  static getTypeNft(link: string): string {
     if (link && link.includes('audio')) {
       return 'audio'
     } else if (link && link.includes('video')) {

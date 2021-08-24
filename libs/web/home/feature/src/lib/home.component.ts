@@ -24,6 +24,6 @@ export class HomeComponent {
   }
 
   redirectSell(nft: NFT) {
-    return this.router.navigateByUrl('/sell', { state: { nft } })
+    return this.router.navigateByUrl('/app/sell', { state: { nft } })
   }
 }

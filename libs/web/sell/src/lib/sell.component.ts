@@ -41,9 +41,13 @@ export class SellComponent {
       this.router.navigateByUrl('/')
     } else {
       if (this.nft.forSale) {
-        this.sellForm.patchValue({...this.nft.forSale})
+        this.sellForm.patchValue({ ...this.nft.forSale })
       }
     }
+  }
+
+  get hbarAmount(){
+    return this.sellForm.get('hbarAmount')!.value;
   }
 
   async sell(user: UserAccount) {
@@ -58,16 +62,28 @@ export class SellComponent {
         fromAccountId: user.accountId,
         quantity: this.sellForm.get('quantity')?.value,
         hbarAmount: this.sellForm.get('hbarAmount')?.value,
-        nft: this.nft
+        nft: this.nft,
       })
       this.requestService.open({
         title: 'Waiting for request Validation...',
         subtitle: 'Please Validate the Request from Xact Wallet',
-        accountId: user.accountId
-      });
+        accountId: user.accountId,
+      })
     } catch (e) {
-      this.toastService.error('Sorry an internal error occurred!')
-      console.error(e)
+      this.toastService.error(e.error ? e.error.error : 'Sorry an internal error occurred!')
+    }
+  }
+
+  async delete(user: UserAccount) {
+    try {
+      await this.connectService.deleteNFT(this.nft.tokenId)
+      this.requestService.open({
+        title: 'Waiting for request Validation...',
+        subtitle: 'Please Validate the Request from Xact Wallet',
+        accountId: user.accountId,
+      })
+    } catch (e) {
+      this.toastService.error(e.error ? e.error.error : 'Sorry an internal error occurred!')
     }
   }
 }

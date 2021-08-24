@@ -16,10 +16,11 @@ export class SdkService {
   async initClient() {
     this.client = new Client({ apiKey: this.appConfig.sdkApi })
     await this.client.initConnexion()
-    /* Listen for Auth Connexion */
-    this.listenForAuth()
-    /* Listen for Sell */
-    this.listenForSell()
+    /* Listeners */
+    this.listenToAuthEvent()
+    this.listenToSellEvent()
+    this.listenToBuyEvent()
+    this.listenToRemoveSaleEvent()
   }
 
   /* Get QR Code */
@@ -34,8 +35,8 @@ export class SdkService {
     return qrCode
   }
 
-  /* Listen for new Auth */
-  listenForAuth() {
+  /* Listen to new Auth Event */
+  listenToAuthEvent() {
     this.client.connect().subscribe(user => {
       this.eventEmitter.emit('xactCheckout.auth', user)
     })
@@ -49,8 +50,8 @@ export class SdkService {
     return this.client.sellNFT(opts)
   }
 
-  /* Listen for new Sell */
-  listenForSell() {
+  /* Listen to new Sell Event */
+  listenToSellEvent() {
     this.client.sellNFTValidation().subscribe(nft => {
       this.eventEmitter.emit('xactCheckout.sell', nft)
     })
@@ -64,12 +65,31 @@ export class SdkService {
     return this.client.refreshAccount(opts)
   }
 
-  async getNFTForSale(tokenId: string): Promise<NFTForSale>{
+  async getNFTForSale(tokenId: string): Promise<NFTForSale> {
     if (!this.client) {
       await this.initClient()
     }
-    return this.client.getNFTForSale({ tokenId })
+    return this.client.getNFTForSaleByTokenId({ tokenId })
+  }
+
+  /* Listen To new Buy Event */
+  listenToBuyEvent() {
+    this.client.buyNFTValidation().subscribe(nft => {
+      this.eventEmitter.emit('xactCheckout.buy', nft)
+    })
   }
 
 
+  async removeFromSale(tokenId: string, socketId: string) {
+    if (!this.client) {
+      await this.initClient()
+    }
+    return this.client.deleteNFTFromSale({tokenId, socketId});
+  }
+
+  private listenToRemoveSaleEvent() {
+    this.client.deleteSellNFTValidation().subscribe((nft)=>{
+      this.eventEmitter.emit('xactCheckout.remove', nft)
+    })
+  }
 }
