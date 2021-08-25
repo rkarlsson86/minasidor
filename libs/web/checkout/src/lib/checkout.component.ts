@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Observable, tap } from 'rxjs'
-import { NFTForSale } from '../../../../../../SDK/ts/packages/client'
+import { NFTForSale } from '@xact-wallet-sdk/client'
 import { ConnectService } from '@xact-checkout/shared/ui/connect'
 import { HomeTileComponent } from '../../../home/ui/tile/src/lib/home-tile.component'
 

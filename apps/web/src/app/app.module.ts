@@ -8,8 +8,9 @@ import { DialogModule } from '@ngneat/dialog'
 import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io'
 import { ToastrModule } from 'ngx-toastr'
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2'
+import { environment } from '@xact-checkout/root/environments'
 
-const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} }
+const config: SocketIoConfig = { url: environment.API_SOCKET, options: {} }
 
 @NgModule({
   declarations: [AppComponent],

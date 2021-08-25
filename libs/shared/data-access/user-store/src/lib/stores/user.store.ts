@@ -3,8 +3,7 @@ import { Inject, Injectable } from '@angular/core'
 import { ImmerComponentStore } from 'ngrx-immer/component-store'
 import { delay, tap } from 'rxjs/operators'
 import { tapResponse } from '@ngrx/component-store'
-import { UserAccount } from '../../../../../../../../SDK/ts/packages/client'
-import { NFT } from '@xact-wallet-sdk/client'
+import { NFT, UserAccount } from '@xact-wallet-sdk/client'
 
 interface UserState {
   user: UserAccount | null;

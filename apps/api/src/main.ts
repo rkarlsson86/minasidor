@@ -1,4 +1,3 @@
-import { Logger } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import * as helmet from 'fastify-helmet'
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify'
@@ -39,12 +38,11 @@ async function bootstrap() {
     .setTitle('Xact Checkout API')
     .setDescription('API documentation for Xact Checkout')
     .setVersion('1.0.0')
-    .addServer(`${appConfig.domain}`, 'Development API')
     .build()
 
   const swaggerDoc = SwaggerModule.createDocument(app, swaggerDocOptions)
 
-  SwaggerModule.setup('api/docs', app, swaggerDoc, {
+  SwaggerModule.setup('api', app, swaggerDoc, {
     swaggerOptions: {
       docExpansion: 'none',
       filter: true,
@@ -52,13 +50,7 @@ async function bootstrap() {
     },
   })
 
-  Logger.log(`Swagger Docs enabled: ${appConfig.domain}/${globalPrefix}/docs`, 'NestApplication')
-
-  const port = appConfig.port || 3333
-
-  await app.listen(port, () => {
-    Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix)
-  })
+  await app.listen(appConfig.port, '0.0.0.0')
 }
 
 bootstrap()

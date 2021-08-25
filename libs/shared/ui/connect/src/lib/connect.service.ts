@@ -10,7 +10,7 @@ import {
   ScopeEnum,
   SellNFTDto,
   UserAccount,
-} from '../../../../../../../SDK/ts/packages/client'
+} from '@xact-wallet-sdk/client'
 import { environment } from '@xact-checkout/root/environments'
 
 @Injectable({

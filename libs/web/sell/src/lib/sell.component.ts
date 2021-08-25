@@ -1,11 +1,11 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
-import { NFT, UserAccount } from '../../../../../../SDK/ts/packages/client'
 import { ToastrService } from 'ngx-toastr'
 import { ConnectService } from '@xact-checkout/shared/ui/connect'
 import { UserStore } from '@xact-checkout/shared/data-access/user-store'
 import { RequestService } from '@xact-checkout/shared/ui/waiting-authorization'
+import { NFT, UserAccount } from '@xact-wallet-sdk/client'
 
 @Component({
   selector: 'xact-checkout-sell',

@@ -2,9 +2,8 @@
   <header class='dark:bg-gray-900 bg-gray:200 dark:text-white-300 text-purple-300'>
     <div class='container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center'>
       <a class='flex title-font font-medium items-center text-purple-300 mb-4 md:mb-0' routerLink='/'>
-        <img src="{{vm.theme === 'dark' ? 'assets/images/logo_dark.svg' : 'assets/images/logo_light.svg'}}"
-             width='100px'
-             alt='Logo'>
+        <img src="{{vm.theme === 'dark' ? '/assets/images/logo_dark.svg' : '/assets/images/logo_light.svg'}}"
+             width='100px'>
       </a>
 
       <nav class='md:ml-auto flex flex-wrap items-center text-base justify-center space-x-2'>

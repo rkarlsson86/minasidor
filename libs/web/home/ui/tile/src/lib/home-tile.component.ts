@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, EventEmitter, Output, OnInit } from '@angular/core'
-import { NFT } from '../../../../../../../../SDK/ts/packages/client'
+import { NFT } from '@xact-wallet-sdk/client'
 import { HttpClient } from '@angular/common/http'
 import { map, Observable, of } from 'rxjs'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

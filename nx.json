@@ -38,7 +38,7 @@
       "tags": ["scope:api"]
     },
     "api-sdk": {
-      "tags": []
+      "tags": ["scope:api"]
     },
     "root-assets": {
       "tags": ["project:crm", "scope:root", "type:assets"]
@@ -50,16 +50,16 @@
       "tags": ["project:crm", "scope:root", "type:styles"]
     },
     "shared-data-access-models": {
-      "tags": []
+      "tags": ["scope:web", "type:data-access"]
     },
     "shared-data-access-ui-store": {
-      "tags": []
+      "tags": ["scope:web", "type:data-access"]
     },
     "shared-data-access-user-store": {
-      "tags": []
+      "tags": ["scope:web", "type:data-access"]
     },
     "shared-ui-connect": {
-      "tags": []
+      "tags": ["scope:web", "type:ui"]
     },
     "shared-ui-footer": {
       "tags": ["scope:web", "type:ui"]
@@ -74,13 +74,13 @@
       "tags": ["scope:web", "type:ui"]
     },
     "shared-ui-waiting-authorization": {
-      "tags": []
+      "tags": ["scope:web", "type:ui"]
     },
     "web": {
       "tags": []
     },
     "web-checkout": {
-      "tags": []
+      "tags": ["scope:web", "type:ui"]
     },
     "web-e2e": {
       "tags": [],
@@ -90,16 +90,16 @@
       "tags": ["scope:home", "type:feature"]
     },
     "web-home-ui-tile": {
-      "tags": []
+      "tags": ["scope:home", "type:ui"]
     },
     "web-home-ui-tile-loader": {
-      "tags": []
+      "tags": ["scope:home", "type:ui"]
     },
     "web-sell": {
-      "tags": []
+      "tags": ["scope:web", "type:ui"]
     },
     "web-shell": {
-      "tags": []
+      "tags": ["scope:web", "type:feature"]
     }
   }
 }

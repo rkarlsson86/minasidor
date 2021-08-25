@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Query } from '@nestjs/common'
 import { SdkService } from './sdk.service'
 import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger'
-import { NFTForSale, ScopeEnum, SellNFTDto } from '../../../../../../SDK/ts/packages/client'
+import { NFTForSale, ScopeEnum, SellNFTDto } from '@xact-wallet-sdk/client'
 
 @ApiTags('SDK')
 @Controller()

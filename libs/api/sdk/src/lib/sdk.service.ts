@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { AppConfig } from '@xact-checkout/api/configuration'
 import { InjectAppConfig } from '@xact-checkout/api/config'
 import { EventEmitter2 } from '@nestjs/event-emitter'
-import { Client, NFTForSale, RefreshAccountDTO, ScopeEnum, SellNFTDto } from '../../../../../../SDK/ts/packages/client'
+import { Client, NFTForSale, RefreshAccountDTO, ScopeEnum, SellNFTDto } from '@xact-wallet-sdk/client'
 
 @Injectable()
 export class SdkService {

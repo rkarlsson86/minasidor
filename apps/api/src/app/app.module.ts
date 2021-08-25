@@ -11,8 +11,8 @@ import { EventEmitterModule } from '@nestjs/event-emitter'
   imports: [
     ApiConfigModule,
     EventEmitterModule.forRoot(),
-    ApiSdkModule,
     RouterModule.forRoutes(routes),
+    ApiSdkModule,
   ],
   controllers: [AppController],
   providers: [],
