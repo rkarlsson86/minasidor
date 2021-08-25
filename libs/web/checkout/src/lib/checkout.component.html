@@ -3,7 +3,7 @@
     <nav class='relative'>
       <div class='flex justify-between items-center'>
         <a class='text-lg font-medium' href='#'>
-          <img class='h-7' src='assets/images/logo_dark.svg' alt='' width='auto'>
+          <img class='h-7' src='https://firebasestorage.googleapis.com/v0/b/xact-wallet.appspot.com/o/public%2Flogo_dark.svg?alt=media&token=2050272f-4330-4ef8-a53a-916def9406eb' alt='' width='auto'>
         </a>
         <div>
         </div>
@@ -38,7 +38,7 @@
                    alt=''>
               <img class='img-nft' width='220'
                    *ngIf='type !== "image"'
-                   src='assets/images/{{type || "any"}}.svg'
+                   [src]='getTypeImage(type)'
                    alt=''>
             </p>
           </div>

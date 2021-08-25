@@ -20,7 +20,8 @@ import { HomeTileComponent } from '../../../home/ui/tile/src/lib/home-tile.compo
 export class CheckoutComponent {
   tokenId: string
   nft$!: Observable<NFTForSale & { media: string }>
-  type!: string;
+  type!: string
+
   constructor(private readonly route: ActivatedRoute,
               private readonly connectService: ConnectService,
               private readonly router: Router) {
@@ -32,8 +33,21 @@ export class CheckoutComponent {
       this.nft$ = this.connectService.getNFTForSale(this.tokenId).pipe(
         tap(nft => {
           this.type = HomeTileComponent.getTypeNft(nft.media)
-        })
+        }),
       )
+    }
+  }
+
+  getTypeImage(type: string) {
+    switch (type) {
+      case 'audio':
+        return 'https://firebasestorage.googleapis.com/v0/b/xact-wallet.appspot.com/o/public%2Faudio.svg?alt=media&token=32bd76c9-f3f6-4001-a841-6f75d5142afe'
+      case 'video':
+        return 'https://firebasestorage.googleapis.com/v0/b/xact-wallet.appspot.com/o/public%2Fvideo.svg?alt=media&token=d05c960a-9eaf-4a85-b10a-31623994956a'
+      case 'file':
+        return 'https://firebasestorage.googleapis.com/v0/b/xact-wallet.appspot.com/o/public%2Ffile.svg?alt=media&token=e8a647db-c829-4324-b1ee-d7a419aeaaf8'
+      default:
+        return 'https://firebasestorage.googleapis.com/v0/b/xact-wallet.appspot.com/o/public%2Fany.svg?alt=media&token=57a60ead-91ba-4deb-859e-6c45990c4e75'
     }
   }
 
