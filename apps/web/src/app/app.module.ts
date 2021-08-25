@@ -10,7 +10,11 @@ import { ToastrModule } from 'ngx-toastr'
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2'
 import { environment } from '@xact-checkout/root/environments'
 
-const config: SocketIoConfig = { url: environment.API_SOCKET, options: {} }
+const config: SocketIoConfig = {
+  url: environment.API_SOCKET, options: {
+    transports: ['polling'],
+  },
+}
 
 @NgModule({
   declarations: [AppComponent],
