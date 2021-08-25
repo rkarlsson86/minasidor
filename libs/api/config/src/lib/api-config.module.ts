@@ -6,7 +6,6 @@ import { validationSchema, appConfiguration } from '@xact-checkout/api/configura
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      ignoreEnvFile: true,
       load: [appConfiguration],
       validationSchema,
     }),
