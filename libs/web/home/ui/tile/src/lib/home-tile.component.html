@@ -6,7 +6,7 @@
          alt=''>
     <img class='w-full h-full object-cover rounded'
          *ngIf='type !== "image"'
-         [src]='getTypeImage(type)'
+         [src]='getTypeImage(type!)'
          alt=''>
     <span class='absolute top-0 right-0 py-1 px-2 mt-2 mr-2 bg-blue-800 rounded text-xs text-white'
           *ngIf='nft?.forSale'>
