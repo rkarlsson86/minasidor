@@ -5,7 +5,7 @@ import {
 } from '@nestjs/websockets'
 import { Logger } from '@nestjs/common'
 import { OnEvent } from '@nestjs/event-emitter'
-import { BuyNFTDto, RequestValidation, UserAccount } from '@xact-wallet-sdk/client'
+import { BuyNFTDto, RemoveNFTDto, RequestValidation, UserAccount } from '@xact-wallet-sdk/client'
 import { SellNFTDto } from '@xact-wallet-sdk/client/lib/models/token.interface'
 
 @WebSocketGateway(3001, {
@@ -40,7 +40,7 @@ export class EventGateway implements OnGatewayConnection {
   }
 
   @OnEvent('xactCheckout.remove')
-  deleteNFT(user: RequestValidation<BuyNFTDto>) {
+  deleteNFT(user: RequestValidation<RemoveNFTDto>) {
     this.server.to(user.socketId).emit('xactCheckout.remove', user)
   }
 

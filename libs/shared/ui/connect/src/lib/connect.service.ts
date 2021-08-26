@@ -6,6 +6,7 @@ import { map, Observable, switchMap } from 'rxjs'
 import { Socket } from 'ngx-socket-io'
 import {
   NFTForSale,
+  RemoveNFTDto,
   RequestValidation,
   ScopeEnum,
   SellNFTDto,
@@ -60,7 +61,7 @@ export class ConnectService {
   listenForAuth(): Observable<RequestValidation<UserAccount>> {
     return new Observable(observer => {
       this.socket.on('xactCheckout.auth', (user: RequestValidation<UserAccount>) => {
-        this.socket.disconnect()
+        // this.socket.disconnect()
         observer.next(user)
       })
     })
@@ -69,7 +70,7 @@ export class ConnectService {
   listenForSellNFT(): Observable<RequestValidation<SellNFTDto>> {
     return new Observable(observer => {
       this.socket.on('xactCheckout.sell', (nft: RequestValidation<SellNFTDto>) => {
-        this.socket.disconnect()
+        // this.socket.disconnect()
         observer.next(nft)
       })
     })
@@ -77,9 +78,9 @@ export class ConnectService {
 
   listenForDeletion(): Observable<void> {
     return new Observable(observer => {
-      this.socket.on('xactCheckout.remove', () => {
-        this.socket.disconnect()
-        observer.next()
+      this.socket.on('xactCheckout.remove', (nft: RequestValidation<RemoveNFTDto>) => {
+        // this.socket.disconnect()
+        observer.next(nft)
       })
     })
   }
