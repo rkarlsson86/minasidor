@@ -56,13 +56,11 @@ export class SellComponent {
         this.toastService.error(`Note: the max quantity must be ${this.nft.supply}`)
         return
       }
-      // @ts-ignore
-      delete this.nft.url
       await this.connectService.sellNFT({
         fromAccountId: user.accountId,
         quantity: this.sellForm.get('quantity')?.value,
         hbarAmount: this.sellForm.get('hbarAmount')?.value,
-        nft: this.nft,
+        tokenId: this.nft.tokenId,
       })
       this.requestService.open({
         title: 'Waiting for request Validation...',
