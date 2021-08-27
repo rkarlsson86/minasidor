@@ -61,7 +61,6 @@ export class ConnectService {
   listenForAuth(): Observable<RequestValidation<UserAccount>> {
     return new Observable(observer => {
       this.socket.on('xactCheckout.auth', (user: RequestValidation<UserAccount>) => {
-        // this.socket.disconnect()
         observer.next(user)
       })
     })
@@ -70,16 +69,14 @@ export class ConnectService {
   listenForSellNFT(): Observable<RequestValidation<SellNFTDto>> {
     return new Observable(observer => {
       this.socket.on('xactCheckout.sell', (nft: RequestValidation<SellNFTDto>) => {
-        // this.socket.disconnect()
         observer.next(nft)
       })
     })
   }
 
-  listenForDeletion(): Observable<void> {
+  listenForDeletion(): Observable<RequestValidation<RemoveNFTDto>> {
     return new Observable(observer => {
       this.socket.on('xactCheckout.remove', (nft: RequestValidation<RemoveNFTDto>) => {
-        // this.socket.disconnect()
         observer.next(nft)
       })
     })
