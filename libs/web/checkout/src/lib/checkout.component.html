@@ -3,7 +3,9 @@
     <nav class='relative'>
       <div class='flex justify-between items-center'>
         <a class='text-lg font-medium' href='#'>
-          <img class='h-7' src='https://firebasestorage.googleapis.com/v0/b/xact-wallet.appspot.com/o/public%2Flogo_dark.svg?alt=media&token=2050272f-4330-4ef8-a53a-916def9406eb' alt='' width='auto'>
+          <img class='h-7'
+               src='https://firebasestorage.googleapis.com/v0/b/xact-wallet.appspot.com/o/public%2Flogo_dark.svg?alt=media&token=2050272f-4330-4ef8-a53a-916def9406eb'
+               alt='' width='auto'>
         </a>
         <div>
         </div>
@@ -11,6 +13,13 @@
     </nav>
   </div>
 </section>
+
+<div class='flex h-screen' *ngIf='emptyNFT'>
+  <div class='m-auto'>
+    <img class='w-full p-10'
+         src='https://firebasestorage.googleapis.com/v0/b/xact-wallet.appspot.com/o/public%2Fempty-qr.png?alt=media&token=4ec6bad2-5137-4bd0-be92-2000aa52ff80'>
+  </div>
+</div>
 <ng-container *ngIf='nft$ | async as nft'>
   <section class='relative ' style='padding-top: 3rem; padding-bottom: 5rem;'>
     <div class='absolute top-0 left-0 lg:bottom-0 h-128 lg:h-auto w-full lg:w-8/12 bg-gray-50'></div>
@@ -52,16 +61,11 @@
               <span class='inline-block mb-5 text-xs font-semibold' style='padding-left: 15%;padding-right: 15%;'>with your Hedera Hashgraph mainnet account and receive 1 copy of this NFT</span>
 
               <div class='mb-2'>
-                <ng-container *ngIf='nft?.quantity! > 0 else noMoreCopy'>
-                  <img
-                    class='w-full p-10'
-                    [src]='nft?.qrCode'>
-                  <p class='text-center'>Scan this QR Code with <a href='https://wallet.xact.ac' target='_blank'>Xact
-                    Wallet App</a></p>
-                </ng-container>
-                <ng-template #noMoreCopy>
-                  <span class='underline'>Sorry this NFT has no more item to offer !</span>
-                </ng-template>
+                <img
+                  class='w-full p-10'
+                  [src]='nft?.qrCode'>
+                <p class='text-center'>Scan this QR Code with <a href='https://wallet.xact.ac' target='_blank'>Xact
+                  Wallet App</a></p>
               </div>
 
             </form>
