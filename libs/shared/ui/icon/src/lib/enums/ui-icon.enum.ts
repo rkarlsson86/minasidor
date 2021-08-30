@@ -9,4 +9,5 @@ export enum UiIcon {
   refresh = 'refresh',
   more = 'more',
   less = 'less',
+  info = 'info',
 }

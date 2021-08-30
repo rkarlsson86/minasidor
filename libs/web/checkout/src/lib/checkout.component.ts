@@ -19,8 +19,9 @@ import { HomeTileComponent } from '../../../home/ui/tile/src/lib/home-tile.compo
 })
 export class CheckoutComponent {
   tokenId: string
-  nft$!: Observable<NFTForSale & { media: string }>
+  nft$!: Observable<NFTForSale & { media: string } | null>
   type!: string
+  emptyNFT = false
 
   constructor(private readonly route: ActivatedRoute,
               private readonly connectService: ConnectService,
@@ -32,7 +33,11 @@ export class CheckoutComponent {
     } else {
       this.nft$ = this.connectService.getNFTForSale(this.tokenId).pipe(
         tap(nft => {
-          this.type = HomeTileComponent.getTypeNft(nft.media)
+          if (nft) {
+            this.type = HomeTileComponent.getTypeNft(nft.media)
+          } else {
+            this.emptyNFT = true;
+          }
         }),
       )
     }

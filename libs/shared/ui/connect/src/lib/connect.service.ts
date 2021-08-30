@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { DialogService } from '@ngneat/dialog'
 import { ConnectComponent } from './connect.component'
 import { HttpClient } from '@angular/common/http'
-import { map, Observable, switchMap } from 'rxjs'
+import { map, Observable, of, switchMap } from 'rxjs'
 import { Socket } from 'ngx-socket-io'
 import {
   NFTForSale,
@@ -61,7 +61,6 @@ export class ConnectService {
   listenForAuth(): Observable<RequestValidation<UserAccount>> {
     return new Observable(observer => {
       this.socket.on('xactCheckout.auth', (user: RequestValidation<UserAccount>) => {
-        // this.socket.disconnect()
         observer.next(user)
       })
     })
@@ -70,16 +69,14 @@ export class ConnectService {
   listenForSellNFT(): Observable<RequestValidation<SellNFTDto>> {
     return new Observable(observer => {
       this.socket.on('xactCheckout.sell', (nft: RequestValidation<SellNFTDto>) => {
-        // this.socket.disconnect()
         observer.next(nft)
       })
     })
   }
 
-  listenForDeletion(): Observable<void> {
+  listenForDeletion(): Observable<RequestValidation<RemoveNFTDto>> {
     return new Observable(observer => {
       this.socket.on('xactCheckout.remove', (nft: RequestValidation<RemoveNFTDto>) => {
-        // this.socket.disconnect()
         observer.next(nft)
       })
     })
@@ -103,9 +100,12 @@ export class ConnectService {
     }).toPromise()
   }
 
-  getNFTForSale(tokenId: string): Observable<NFTForSale & { media: string }> {
+  getNFTForSale(tokenId: string): Observable<NFTForSale & { media: string } | null> {
     return this.http.get<NFTForSale>(`${environment.API}/sdk/nft-for-sale?tokenId=${tokenId}`).pipe(
       switchMap(res => {
+        if (!res.nft) {
+          return of(null)
+        }
         return this.http.get(res.nft.url).pipe(
           map(
             (nft: any) => {
