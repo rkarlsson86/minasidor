@@ -6,6 +6,7 @@ import { ConnectService } from '@xact-checkout/shared/ui/connect'
 import { UserStore } from '@xact-checkout/shared/data-access/user-store'
 import { RequestService } from '@xact-checkout/shared/ui/waiting-authorization'
 import { NFT, UserAccount } from '@xact-wallet-sdk/client'
+import { NgxSpinnerService } from 'ngx-spinner'
 
 @Component({
   selector: 'xact-checkout-sell',
@@ -33,6 +34,7 @@ export class SellComponent {
   constructor(private readonly fb: FormBuilder,
               private readonly toastService: ToastrService,
               private readonly userStore: UserStore,
+              private readonly spinner: NgxSpinnerService,
               private readonly requestService: RequestService,
               private readonly connectService: ConnectService,
               private readonly router: Router) {
@@ -46,8 +48,8 @@ export class SellComponent {
     }
   }
 
-  get hbarAmount(){
-    return this.sellForm.get('hbarAmount')!.value;
+  get hbarAmount() {
+    return this.sellForm.get('hbarAmount')!.value
   }
 
   async sell(user: UserAccount) {
@@ -56,31 +58,37 @@ export class SellComponent {
         this.toastService.error(`Note: the max quantity must be ${this.nft.supply}`)
         return
       }
+      await this.spinner.show()
       await this.connectService.sellNFT({
         fromAccountId: user.accountId,
         quantity: this.sellForm.get('quantity')?.value,
         hbarAmount: this.sellForm.get('hbarAmount')?.value,
         tokenId: this.nft.tokenId,
       })
+      await this.spinner.hide()
       this.requestService.open({
         title: 'Waiting for request Validation...',
         subtitle: 'Please Validate the Request from Xact Wallet',
         accountId: user.accountId,
       })
     } catch (e) {
+      await this.spinner.hide()
       this.toastService.error(e.error ? e.error.error : 'Sorry an internal error occurred!')
     }
   }
 
   async delete(user: UserAccount) {
     try {
+      await this.spinner.show()
       await this.connectService.deleteNFT(this.nft.tokenId)
       this.requestService.open({
         title: 'Waiting for request Validation...',
         subtitle: 'Please Validate the Request from Xact Wallet',
         accountId: user.accountId,
       })
+      await this.spinner.hide()
     } catch (e) {
+      await this.spinner.hide()
       this.toastService.error(e.error ? e.error.error : 'Sorry an internal error occurred!')
     }
   }

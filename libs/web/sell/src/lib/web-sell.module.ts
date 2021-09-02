@@ -7,12 +7,14 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2'
 import { SharedUiIconModule } from '@xact-checkout/shared/ui/icon'
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   imports: [
     CommonModule,
     SharedUiPageModule,
     SharedUiIconModule,
+    NgxSpinnerModule,
     TooltipModule,
     ReactiveFormsModule,
     RouterModule.forChild([
