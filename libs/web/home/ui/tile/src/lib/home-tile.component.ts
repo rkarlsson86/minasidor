@@ -41,16 +41,19 @@ export class HomeTileComponent implements OnInit {
     }
   }
 
-  static getTypeNft(link: string): string {
-    if (link && link.includes('audio')) {
+  static getTypeNft(link: any): string {
+    if (link && typeof link === 'string' && link.includes('audio')) {
       return 'audio'
-    } else if (link && link.includes('video')) {
+    } else if (link && typeof link === 'string' && link.includes('video')) {
       return 'video'
-    } else if (link && link.includes('application/pdf')) {
+    } else if (link && typeof link === 'string' && link.includes('application/pdf')) {
       return 'file'
-    } else if (link && link.includes('image')) {
+    } else if (link && typeof link === 'string' && link.includes('image')) {
       return 'image'
-    } else if (link && link.includes('https')) {
+    } else if (link && typeof link === 'string' && (link.includes('model/gltf-binary')
+      || link.includes('.glb') || link.includes('.gltf') || link.includes('.usdz'))) {
+      return '3D'
+    } else if (link && typeof link === 'string' && link.includes('https')) {
       const type = mime.getType(link)
       return this.getTypeNft(type)
     } else {
@@ -66,6 +69,8 @@ export class HomeTileComponent implements OnInit {
         return 'https://firebasestorage.googleapis.com/v0/b/xact-wallet.appspot.com/o/public%2Fvideo.svg?alt=media&token=d05c960a-9eaf-4a85-b10a-31623994956a'
       case 'file':
         return 'https://firebasestorage.googleapis.com/v0/b/xact-wallet.appspot.com/o/public%2Ffile.svg?alt=media&token=e8a647db-c829-4324-b1ee-d7a419aeaaf8'
+      case 'any':
+        return 'https://firebasestorage.googleapis.com/v0/b/xact-wallet.appspot.com/o/public%2Fany.svg?alt=media&token=57a60ead-91ba-4deb-859e-6c45990c4e75'
       default:
         return 'https://firebasestorage.googleapis.com/v0/b/xact-wallet.appspot.com/o/public%2Fany.svg?alt=media&token=57a60ead-91ba-4deb-859e-6c45990c4e75'
     }
