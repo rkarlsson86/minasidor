@@ -34,7 +34,9 @@ export class CheckoutComponent {
       this.nft$ = this.connectService.getNFTForSale(this.tokenId).pipe(
         tap(nft => {
           if (nft) {
-            this.type = HomeTileComponent.getTypeNft(nft.media)
+            HomeTileComponent.getTypeNft(nft.media).then((type)=>{
+              this.type = type;
+            })
           } else {
             this.emptyNFT = true;
           }

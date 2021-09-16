@@ -55,9 +55,19 @@
         <div class='w-full lg:w-1/2 px-4'>
           <div class='lg:max-w-md p-6 lg:px-10 lg:py-12 bg-white text-center border rounded-xl'>
             <form action='#'>
-              <h3 class='mb-2 text-3xl font-semibold font-heading'>Pay instantly</h3>
+              <h3 class='mb-2 text-3xl font-semibold font-heading'>
+                <span *ngIf='nft && nft.hbarAmount else free'>Pay instantly</span>
+                <ng-template #free>
+                  <span>Get this NFT for Free</span>
+                </ng-template>
+              </h3>
               <span class='mb-2 text-lg font-semibold'><span
-                style='color: #43C6FA;'>{{nft?.hbarAmount}} ℏ</span> <small> to {{nft?.accountId}}</small></span>
+                style='color: #43C6FA;' *ngIf='nft && nft.hbarAmount else freeMessage'>{{nft?.hbarAmount}}
+                ℏ</span> <small> to {{nft?.accountId}}</small></span>
+              <ng-template #freeMessage>
+              <span class='mb-2 text-lg font-semibold'><span
+                style='color: #43C6FA;'>Scan this QR Code</span></span>
+              </ng-template>
               <span class='inline-block mb-5 text-xs font-semibold' style='padding-left: 15%;padding-right: 15%;'>with your Hedera Hashgraph mainnet account and receive 1 copy of this NFT</span>
 
               <div class='mb-2'>

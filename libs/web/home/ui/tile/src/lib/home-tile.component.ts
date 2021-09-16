@@ -31,8 +31,8 @@ export class HomeTileComponent implements OnInit {
         .pipe(
           map((res: any) => {
             if (res.photo) {
-              this.type = HomeTileComponent.getTypeNft(res.photo)
-              return res.photo
+              HomeTileComponent.getTypeNft(res.photo).then(type => this.type = type);
+              return res.photo;
             }
           }),
         )
@@ -41,7 +41,7 @@ export class HomeTileComponent implements OnInit {
     }
   }
 
-  static getTypeNft(link: any): string {
+  static async getTypeNft(link: any): Promise<string> {
     if (link && typeof link === 'string' && link.includes('audio')) {
       return 'audio'
     } else if (link && typeof link === 'string' && link.includes('video')) {
