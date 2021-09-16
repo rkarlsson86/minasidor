@@ -8,7 +8,7 @@
          *ngIf='type !== "image" && type !== "3D"'
          [src]='getTypeImage(type!)'
          alt=''>
-    <model-viewer class="rounded-xl" *ngIf="type === '3D'" [src]="media" ar ar-scale="fixed" camera-controls
+    <model-viewer class="rounded-xl w-full" *ngIf="type === '3D'" [src]="media" ar ar-scale="fixed" camera-controls
                   xr-environment></model-viewer>
     <span class='absolute top-0 right-0 py-1 px-2 mt-2 mr-2 bg-blue-800 rounded text-xs text-white'
           *ngIf='nft?.forSale'>
