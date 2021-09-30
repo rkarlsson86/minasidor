@@ -61,9 +61,11 @@
                   <span>Get this NFT for Free</span>
                 </ng-template>
               </h3>
+              <ng-container *ngIf='nft && nft.hbarAmount else freeMessage'>
               <span class='mb-2 text-lg font-semibold'><span
-                style='color: #43C6FA;' *ngIf='nft && nft.hbarAmount else freeMessage'>{{nft?.hbarAmount}}
+                style='color: #43C6FA;'>{{nft?.hbarAmount}}
                 ℏ</span> <small> to {{nft?.accountId}}</small></span>
+              </ng-container>
               <ng-template #freeMessage>
               <span class='mb-2 text-lg font-semibold'><span
                 style='color: #43C6FA;'>Scan this QR Code</span></span>
